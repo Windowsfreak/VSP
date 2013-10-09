@@ -25,5 +25,5 @@ requestNnr(ServerPID) ->
 
 isKnown(_Nnr, []) -> false;
 isKnown(Nnr, [Nnr | _List]) -> true;
-isKnown(Nnr, [_Nnr | List]) -> isKnown(Nnr, List);
+isKnown(Nnr, [_Nnr | List]) -> isKnown(Nnr, List).
 % lol
