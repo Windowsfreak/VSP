@@ -2,9 +2,9 @@
 -compile([export_all]).
 
 {ok, ServerCfg} = file:consult("server.cfg"),
-{ok, MaxLength} = get_config_value(maxLength, ServerCfg),
+% {ok, MaxLength} = werkzeug:get_config_value(maxLength, ServerCfg),
 
-loop(HBQ, DLQ, Clients, NextNnr) ->
+loop(HBQ, DLQ, Clients, NextNnr, ServerCfg) ->
 	true. % TODO
 	
 queueInsert(Queue, Message) ->
@@ -18,8 +18,3 @@ queueCrop(Queue, MaxLength) ->
 	
 dlqInsert(DLQ, Message, MaxLength) ->
 	queueCrop(queueInsert(DLQ, Message), MaxLength).
-	
-
-	
-	
-	
