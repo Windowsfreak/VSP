@@ -23,7 +23,7 @@ requestNnr(ServerPID) ->
 		{nnr, Number} -> Number
 	end. % TODO
 
-isKnown
-	(_Nnr, []) -> false;
-	(Nnr, [Nnr | _List) -> true;
-	(Nnr, [_Nnr | List) -> isKnown(Nnr, List);
+isKnown(_Nnr, []) -> false;
+isKnown(Nnr, [Nnr | _List]) -> true;
+isKnown(Nnr, [_Nnr | List]) -> isKnown(Nnr, List);
+% lol
