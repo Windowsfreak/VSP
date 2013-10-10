@@ -6,24 +6,42 @@ start() -> spawn(server, loop, []).
 
 loop() ->
 	{ok, ServerCfg} = file:consult("server.cfg"),
-	%{ok, MaxLength} = werkzeug:get_config_value(maxLength, ServerCfg),
-	loop([], [], [], 1, ServerCfg). 
-loop(HBQ, DLQ, Clients, NextNnr, ServerCfg) ->
+	{ok,Timer} = timer:send_after(86400000,stop), % do not stop before first client gets his message
+	loop([], [], [], 1, Timer, ServerCfg).
+
+loop(HBQ, DLQ, ClientList, NextNnr, Timer, ServerCfg) ->
 	receive
-		{getmsgid, ClientPID} -> 
+		stop ->
+			io:fwrite("Programm wurde beendet.~n");
+		{getmsgid, ClientPID} ->
 			ClientPID ! {nnr, NextNnr},
-			loop(HBQ, DLQ, Clients, NextNnr + 1, ServerCfg);
+			loop(HBQ, DLQ, ClientList, NextNnr + 1, Timer, ServerCfg);
 		{dropmessage, {Message, Number}} ->
 			{ok, MaxLength} = werkzeug:get_config_value(maxLength, ServerCfg),
 			HBQLength = MaxLength / 2,
 			[NewHBQ, NewDLQ] = hbqInsert(HBQ, {Number, Message}, DLQ, HBQLength, MaxLength),
-			loop(NewHBQ, NewDLQ, Clients, NextNnr, ServerCfg);
+			loop(NewHBQ, NewDLQ, ClientList, NextNnr, Timer, ServerCfg);
 		{getmessages, ClientPID} ->
-			ClientPID ! {reply, Nnr, Message, Terminated};
-		
+			{ok, Timeout} = werkzeug:get_config_value(timeout, ServerCfg),
+			NewTimer = werkzeug:reset_timer(Timer, Timeout, stop),
+			{ok, MaxClientAge} = werkzeug:get_config_value(maxClientAge, ServerCfg),
+			{LastNnr, _LastAccess} = findClient(ClientPID, ClientList, MaxClientAge),
+			% io:format("LastNnr = ~p~n", [LastNnr]),
+			MinDLQ = werkzeug:minNrSL(DLQ),
+			if MinDLQ > LastNnr + 1 ->
+				% this fixes odd behaviour, findneSL doesn't work as expected when no element is smaller than needle
+				{Nnr, Message} = werkzeug:findSL(DLQ, MinDLQ);
+			true ->
+				{Nnr, Message} = werkzeug:findneSL(DLQ, LastNnr + 1)
+			end,
+			MaxDLQ = werkzeug:maxNrSL(DLQ),
+			Terminated = (Nnr == -1) or (MaxDLQ == Nnr),
+			ClientPID ! {reply, Nnr, Message, Terminated},
+			NewClientList = updateClient(ClientPID, {Nnr, os:timestamp()}, ClientList),
+			loop(HBQ, DLQ, NewClientList, NextNnr, NewTimer, ServerCfg);
 		{params, ClientPID} ->
-			ClientPID ! {params, [HBQ, DLQ, Clients, NextNnr, ServerCfg]},
-			loop(HBQ, DLQ, Clients, NextNnr, ServerCfg)
+			ClientPID ! {params, [HBQ, DLQ, ClientList, NextNnr, ServerCfg]},
+			loop(HBQ, DLQ, ClientList, NextNnr, Timer, ServerCfg)
 	end.
 
 test(ServerPID) ->
@@ -32,39 +50,42 @@ test(ServerPID) ->
 		{params, Params} -> Params
 	end.
 
-findClient(ClientPID, ClientList, MaxClientAge) ->	
+findClient(ClientPID, ClientList, MaxClientAge) ->
 	{_Nr, Result} = werkzeug:findSL(ClientList, ClientPID),
 	if Result == nok ->
-		{ClientPID, 0, os:timestamp()};
+		{-1, os:timestamp()};
 	true ->
-		{_ClientPID, _LastNnr, LastAccess} = Result,
+		{_LastNnr, LastAccess} = Result,
 		ClientAge = timer:now_diff(os:timestamp(), LastAccess),
-		if ClientAge > MaxClientAge ->
+		if ClientAge > MaxClientAge * 1000000 ->
 			findClient(ClientPID, [], MaxClientAge);
 		true ->
 			Result
 		end
 	end.
-	
-	
-	
+
+updateClient(ClientPID, NewClient, ClientList) ->
+	OldClient = werkzeug:findSL(ClientList, ClientPID),
+	werkzeug:pushSL(lists:delete(OldClient, ClientList), {ClientPID, NewClient}).
+
+
 queueInsert(Queue, Message) ->
 	NewQueue = werkzeug:pushSL(Queue, Message),
 	NewQueue.
-	
-	
+
+
 queueCrop(Queue, MaxLength) ->
 	Length = werkzeug:lengthSL(Queue),
 	if Length > MaxLength ->
 		queueCrop(werkzeug:popSL(Queue), MaxLength);
-	true -> 
+	true ->
 		Queue
 	end.
 
-	
+
 dlqInsert(DLQ, Message, MaxLength) ->
 	queueCrop(queueInsert(DLQ, Message), MaxLength).
-	
+
 hbqInsert(HBQ, Message, DLQ, MaxLength, DLQLength) ->
 	{Nnr, _Msg} = Message,
 	MaxDLQ = werkzeug:maxNrSL(DLQ),
@@ -74,7 +95,7 @@ hbqInsert(HBQ, Message, DLQ, MaxLength, DLQLength) ->
 	true ->
 		[HBQ,DLQ]
 	end.
-	
+
 hbqClean(HBQ, DLQ, MaxLength, DLQLength) ->
 	[NewHBQ, NewDLQ] = hbqCrop(HBQ, DLQ, DLQLength),
 	Length = werkzeug:lengthSL(NewHBQ),
@@ -84,21 +105,15 @@ hbqClean(HBQ, DLQ, MaxLength, DLQLength) ->
 	true ->
 		[NewHBQ, NewDLQ]
 	end.
-	
+
 hbqCrop(HBQ, DLQ, DLQLength) ->
 	MinHBQ = werkzeug:minNrSL(HBQ),
 	MaxDLQ = werkzeug:maxNrSL(DLQ),
-	if MaxDLQ + 1 == MinHBQ ->
+	if (MaxDLQ + 1 == MinHBQ) or (MaxDLQ == -1) ->
 		Elem = werkzeug:findSL(HBQ, MinHBQ),
 		hbqCrop(werkzeug:popSL(HBQ), dlqInsert(DLQ, Elem, DLQLength), DLQLength);
-	true -> 
+	true ->
 		[HBQ, DLQ]
 	end.
-		
-	
-	
-	
-	
-	
-	
-	
+
+log(File, Text, Params) -> werkzeug:logging(File, lists:concat(io_lib:format(Text, Params))).

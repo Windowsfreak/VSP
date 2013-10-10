@@ -41,7 +41,7 @@ logstop( ) -> 	Known = erlang:whereis(logklc),
 					undefined -> false;
 					_NotUndef -> logklc ! kill, true
 				end.
-					
+
 logloop(Y) -> 	receive
 					{Datei,Inhalt} -> io:format(Inhalt),
 									  file:write_file(Datei,Inhalt,[append]),
@@ -58,7 +58,7 @@ reset_timer(Timer,Sekunden,Message) ->
 	{ok, cancel} = timer:cancel(Timer),
 	{ok,TimerNeu} = timer:send_after(Sekunden*1000,Message),
 	TimerNeu.
-	
+
 %% Zeitstempel: 'MM.DD HH:MM:SS,SSS'
 % Beispielaufruf: Text = lists:concat([Clientname," Startzeit: ",timeMilliSecond()]),
 %
@@ -81,9 +81,9 @@ concat([First|[]], _, Text) ->
 	concat([],"",klebe(First,Text));
 concat([First|List], Between, Text) ->
 	concat(List, Between, string:concat(klebe(First,Text), Between)).
-klebe(First,Text) -> 	
+klebe(First,Text) ->
 	NumberList = integer_to_list(First),
-	string:concat(Text,minTwo(NumberList)).	
+	string:concat(Text,minTwo(NumberList)).
 minTwo(List) ->
 	case {length(List)} of
 		{0} -> ?ZERO ++ ?ZERO;
@@ -110,29 +110,29 @@ type_is(Something) ->
 	   is_reference(Something) -> reference;
 	   is_tuple(Something) -> tuple
 	end.
-	
+
 % Wandelt in eine Zeichenkette um
 % Beispielaufruf: to_String(Something),
 %
 to_String(Etwas) ->
-	lists:flatten(io_lib:format("~p", [Etwas])).	
+	lists:flatten(io_lib:format("~p", [Etwas])).
 
 % Wandelt Liste in eine Zeichenketten Liste um
 % Beispielaufruf: list2String(Liste),
 %
 list2String([]) ->
-	lists:concat(["[ ]"]);	
+	lists:concat(["[ ]"]);
 list2String([Head]) ->
-	lists:concat(["[",werkzeug:to_String(Head),"]"]);	
+	lists:concat(["[",werkzeug:to_String(Head),"]"]);
 list2String([Head|Tail]) ->
-	lists:concat(["[",werkzeug:to_String(Head),",",list2Stringrek(Tail)]).	
+	lists:concat(["[",werkzeug:to_String(Head),",",list2Stringrek(Tail)]).
 list2Stringrek([Head]) ->
-	lists:concat([werkzeug:to_String(Head),"]"]);	
+	lists:concat([werkzeug:to_String(Head),"]"]);
 list2Stringrek([Head|Tail]) ->
-	lists:concat([werkzeug:to_String(Head),",",list2Stringrek(Tail)]);	
+	lists:concat([werkzeug:to_String(Head),",",list2Stringrek(Tail)]);
 list2Stringrek([]) -> "]".
-	
-	
+
+
 %% -------------------------------------------
 %% Mischt eine Liste
 % Beispielaufruf: NeueListe = shuffle([a,b,c]),
@@ -230,7 +230,7 @@ emptySL( ) -> [].
 %
 notemptySL([]) -> false;
 notemptySL(_SL) -> true.
-	
+
 %% -------------------------------------------
 %% Löscht das letzte Element einer Liste
 %
@@ -250,19 +250,19 @@ delete_last([Head|Tail]) -> [Head|delete_last(Tail)].
 % Beispielaufruf: bestimme_mis(42,88),
 % 42: gewünschter ggT
 % 88: Anzahl benötigter Zahlen
-% 
+%
 %%
 bestimme_mis(WggT,GGTsCount) -> bestimme_mis(WggT,GGTsCount,[]).
 bestimme_mis(_WggT,0,Mis) -> Mis;
-bestimme_mis(WggT,GGTs,Mis) -> 
+bestimme_mis(WggT,GGTs,Mis) ->
 	Mi = einmi([3, 5, 11, 13, 23, 37],WggT),
-	Enthalten = lists:member(Mi,Mis), 
+	Enthalten = lists:member(Mi,Mis),
 	if 	Enthalten -> bestimme_mis(WggT,GGTs,Mis);
 		true ->	bestimme_mis(WggT,GGTs-1,[Mi|Mis])
-	end.	
+	end.
 % berechnet ein Mi
-einmi([],Akku) -> Akku;	
+einmi([],Akku) -> Akku;
 einmi([Prim|Prims],Akku) ->
 	Expo = random:uniform(3)-1, % 0 soll möglich sein!
 	AkkuNeu = trunc(Akku * math:pow(Prim,Expo)), % trunc erzeugt integer, was für rem wichtig ist
-	einmi(Prims,AkkuNeu).		
+	einmi(Prims,AkkuNeu).
