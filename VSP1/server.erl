@@ -7,6 +7,7 @@ start() -> spawn(server, loop, []).
 loop() ->
 	{ok, ServerCfg} = file:consult("server.cfg"),
 	{ok,Timer} = timer:send_after(86400000,stop), % do not stop before first client gets his message
+	log("server.log", "~s-~p-T3 S-Start: ~s~n", [pcName(), self(), werkzeug:timeMilliSecond()]),
 	loop([], [], [], 1, Timer, ServerCfg).
 
 loop(HBQ, DLQ, ClientList, NextNnr, Timer, ServerCfg) ->
@@ -15,11 +16,13 @@ loop(HBQ, DLQ, ClientList, NextNnr, Timer, ServerCfg) ->
 			io:fwrite("Programm wurde beendet.~n");
 		{getmsgid, ClientPID} ->
 			ClientPID ! {nnr, NextNnr},
+			log("server.log", "getMsgId by ~p - ~p~n", [ClientPID, NextNnr]),
 			loop(HBQ, DLQ, ClientList, NextNnr + 1, Timer, ServerCfg);
 		{dropmessage, {Message, Number}} ->
-			{ok, MaxLength} = werkzeug:get_config_value(maxLength, ServerCfg),
-			HBQLength = MaxLength / 2,
-			[NewHBQ, NewDLQ] = hbqInsert(HBQ, {Number, Message}, DLQ, HBQLength, MaxLength),
+			{ok, MaxDLQLength} = werkzeug:get_config_value(maxDLQLength, ServerCfg),
+			MaxHBQLength = MaxDLQLength / 2,
+			[NewHBQ, NewDLQ] = hbqInsert(HBQ, {Number, Message}, DLQ, MaxHBQLength, MaxDLQLength),
+			log("server.log", "dropMessage - ~p - ~s~n", [Number, Message]),
 			loop(NewHBQ, NewDLQ, ClientList, NextNnr, Timer, ServerCfg);
 		{getmessages, ClientPID} ->
 			{ok, Timeout} = werkzeug:get_config_value(timeout, ServerCfg),
@@ -37,6 +40,7 @@ loop(HBQ, DLQ, ClientList, NextNnr, Timer, ServerCfg) ->
 			MaxDLQ = werkzeug:maxNrSL(DLQ),
 			Terminated = (Nnr == -1) or (MaxDLQ == Nnr),
 			ClientPID ! {reply, Nnr, Message, Terminated},
+			log("server.log", "getMessage by ~p - ~p - ~s~n", [ClientPID, Terminated, Message]),
 			NewClientList = updateClient(ClientPID, {Nnr, os:timestamp()}, ClientList),
 			loop(HBQ, DLQ, NewClientList, NextNnr, NewTimer, ServerCfg);
 		{params, ClientPID} ->
@@ -49,6 +53,9 @@ test(ServerPID) ->
 	receive
 		{params, Params} -> Params
 	end.
+	
+stop(ServerPID) ->
+	ServerPID ! stop.
 
 findClient(ClientPID, ClientList, MaxClientAge) ->
 	{_Nr, Result} = werkzeug:findSL(ClientList, ClientPID),
@@ -83,37 +90,44 @@ queueCrop(Queue, MaxLength) ->
 	end.
 
 
-dlqInsert(DLQ, Message, MaxLength) ->
-	queueCrop(queueInsert(DLQ, Message), MaxLength).
+dlqInsert(DLQ, Message, MaxDLQLength) ->
+	queueCrop(queueInsert(DLQ, Message), MaxDLQLength).
 
-hbqInsert(HBQ, Message, DLQ, MaxLength, DLQLength) ->
-	{Nnr, _Msg} = Message,
+hbqInsert(HBQ, Message, DLQ, MaxHBQLength, MaxDLQLength) ->
+	{Nnr, Elem} = Message,
 	MaxDLQ = werkzeug:maxNrSL(DLQ),
 	if Nnr > MaxDLQ ->
-		NewHBQ = queueInsert(HBQ,Message),
-		hbqClean(NewHBQ, DLQ, MaxLength, DLQLength);
+		NewHBQ = queueInsert(HBQ,{Nnr, format("~s HBQ: ~s", [Elem, werkzeug:timeMilliSecond()])}),
+		hbqClean(NewHBQ, DLQ, MaxHBQLength, MaxDLQLength);
 	true ->
 		[HBQ,DLQ]
 	end.
 
-hbqClean(HBQ, DLQ, MaxLength, DLQLength) ->
-	[NewHBQ, NewDLQ] = hbqCrop(HBQ, DLQ, DLQLength),
+hbqClean(HBQ, DLQ, MaxHBQLength, MaxDLQLength) ->
+	[NewHBQ, NewDLQ] = hbqCrop(HBQ, DLQ, MaxDLQLength),
 	Length = werkzeug:lengthSL(NewHBQ),
-	if Length > MaxLength ->
+	if Length > MaxHBQLength ->
 		MinHBQ = werkzeug:minNrSL(NewHBQ),
-		hbqClean(NewHBQ, dlqInsert(NewDLQ, {MinHBQ - 1, "Fehlernachricht für eine Lücke"}, DLQLength), MaxLength, DLQLength);
+		MaxDLQ = werkzeug:maxNrSL(NewDLQ),
+		log("server.log", "Luecke von ~p bis ~p geschlossen~n", [MaxDLQ + 1, MinHBQ - 1]),
+		hbqClean(NewHBQ, dlqInsert(NewDLQ, {MinHBQ - 1, format("Fehlernachricht fuer Luecke von ~p bis ~p", [MaxDLQ + 1, MinHBQ - 1])}, MaxDLQLength), MaxHBQLength, MaxDLQLength);
 	true ->
 		[NewHBQ, NewDLQ]
 	end.
 
-hbqCrop(HBQ, DLQ, DLQLength) ->
+hbqCrop(HBQ, DLQ, MaxDLQLength) ->
 	MinHBQ = werkzeug:minNrSL(HBQ),
 	MaxDLQ = werkzeug:maxNrSL(DLQ),
 	if (MaxDLQ + 1 == MinHBQ) or (MaxDLQ == -1) ->
-		Elem = werkzeug:findSL(HBQ, MinHBQ),
-		hbqCrop(werkzeug:popSL(HBQ), dlqInsert(DLQ, Elem, DLQLength), DLQLength);
+		{Nnr, Elem} = werkzeug:findSL(HBQ, MinHBQ),
+		hbqCrop(werkzeug:popSL(HBQ), dlqInsert(DLQ, {Nnr, format("~s DLQ: ~s", [Elem, werkzeug:timeMilliSecond()])}, MaxDLQLength), MaxDLQLength);
 	true ->
 		[HBQ, DLQ]
 	end.
 
-log(File, Text, Params) -> werkzeug:logging(File, lists:concat(io_lib:format(Text, Params))).
+pcName() ->
+	{ok, Name} = inet:gethostname(),
+	Name.
+
+format(Text, Params) -> erlang:iolist_to_binary(io_lib:format(Text, Params)).
+log(File, Text, Params) -> werkzeug:logging(File, format(Text, Params)).
