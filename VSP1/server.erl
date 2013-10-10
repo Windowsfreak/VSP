@@ -7,14 +7,46 @@ start() -> spawn(server, loop, []).
 loop() ->
 	{ok, ServerCfg} = file:consult("server.cfg"),
 	%{ok, MaxLength} = werkzeug:get_config_value(maxLength, ServerCfg),
-	loop(0,0,0,0,0). 
+	loop([], [], [], 1, ServerCfg). 
 loop(HBQ, DLQ, Clients, NextNnr, ServerCfg) ->
 	receive
 		{getmsgid, ClientPID} -> 
 			ClientPID ! {nnr, NextNnr},
-			loop(HBQ, DLQ, Clients, NextNnr + 1, ServerCfg)
+			loop(HBQ, DLQ, Clients, NextNnr + 1, ServerCfg);
+		{dropmessage, {Message, Number}} ->
+			{ok, MaxLength} = werkzeug:get_config_value(maxLength, ServerCfg),
+			HBQLength = MaxLength / 2,
+			[NewHBQ, NewDLQ] = hbqInsert(HBQ, {Number, Message}, DLQ, HBQLength, MaxLength),
+			loop(NewHBQ, NewDLQ, Clients, NextNnr, ServerCfg);
+		{getmessages, ClientPID} ->
+			ClientPID ! {reply, Nnr, Message, Terminated};
+		
+		{params, ClientPID} ->
+			ClientPID ! {params, [HBQ, DLQ, Clients, NextNnr, ServerCfg]},
+			loop(HBQ, DLQ, Clients, NextNnr, ServerCfg)
 	end.
- 
+
+test(ServerPID) ->
+	ServerPID ! {params, self()},
+	receive
+		{params, Params} -> Params
+	end.
+
+findClient(ClientPID, ClientList, MaxClientAge) ->	
+	{_Nr, Result} = werkzeug:findSL(ClientList, ClientPID),
+	if Result == nok ->
+		{ClientPID, 0, os:timestamp()};
+	true ->
+		{_ClientPID, _LastNnr, LastAccess} = Result,
+		ClientAge = timer:now_diff(os:timestamp(), LastAccess),
+		if ClientAge > MaxClientAge ->
+			findClient(ClientPID, [], MaxClientAge);
+		true ->
+			Result
+		end
+	end.
+	
+	
 	
 queueInsert(Queue, Message) ->
 	NewQueue = werkzeug:pushSL(Queue, Message),
