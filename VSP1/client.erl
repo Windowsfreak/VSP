@@ -6,6 +6,7 @@ startDistributed(Number, ServerName) -> startMultiple(Number, {server, ServerNam
 startMultiple(0, _) -> true;
 startMultiple(Count, ServerPID) ->
 	start(Count, ServerPID),
+	timer:sleep(200),
 	startMultiple(Count - 1, ServerPID).
 
 start(Number, ServerPID) -> spawn(client, loop, [Number, ServerPID]).
