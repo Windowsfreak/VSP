@@ -1,0 +1,151 @@
+lab29-5-<0.45.0>-T3 C-Start: 23.10 17:51:51,407|
+lab29-5-<0.45.0>-T3: Msg #183, C-Out: 23.10 17:51:52,418| gesendet
+lab29-5-<0.45.0>-T3: Msg #217, C-Out: 23.10 17:51:53,419| gesendet
+lab29-5-<0.45.0>-T3: Msg #224, C-Out: 23.10 17:51:54,422| gesendet
+lab29-5-<0.45.0>-T3: Msg #239, C-Out: 23.10 17:51:55,426| gesendet
+lab29-5-<0.45.0>-T3: Msg #248, C-Out: 23.10 17:51:56,429| gesendet
+Neues Intervall: 1 Sekunden
+Msg #308 um 23.10 17:51:56,430| vergessen zu senden
+Es sind noch keine neuen Nachrichten vorhanden C-In: 23.10 17:51:56,431|
+ReceiveMsgs done
+lab29-5-<0.45.0>-T3: Msg #317, C-Out: 23.10 17:51:57,432| gesendet
+lab29-5-<0.45.0>-T3: Msg #326, C-Out: 23.10 17:51:58,434| gesendet
+lab29-5-<0.45.0>-T3: Msg #336, C-Out: 23.10 17:51:59,436| gesendet
+lab29-5-<0.45.0>-T3: Msg #348, C-Out: 23.10 17:52:00,438| gesendet
+lab29-5-<0.45.0>-T3: Msg #381, C-Out: 23.10 17:52:01,439| gesendet
+Neues Intervall: 1.5 Sekunden
+Msg #419 um 23.10 17:52:01,439| vergessen zu senden
+nok C-In: 23.10 17:52:01,439|
+Fehlernachricht für Nachrichten von 348 bis 367 C-In: 23.10 17:52:01,440|
+1-client@lab23: 368. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:0 ; HBQ eingang am: 23.10 17:52:00,225| DLQ Empfangszeit: 23.10 17:52:00,605|  C-In: 23.10 17:52:01,441|
+4-client@lab23: 369. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:0 ; HBQ eingang am: 23.10 17:52:00,227| DLQ Empfangszeit: 23.10 17:52:00,605|  C-In: 23.10 17:52:01,442|
+1-client@lab23: 370. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:0 ; HBQ eingang am: 23.10 17:52:00,227| DLQ Empfangszeit: 23.10 17:52:00,605|  C-In: 23.10 17:52:01,443|
+2-client@lab23: 371. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:0 ; HBQ eingang am: 23.10 17:52:00,228| DLQ Empfangszeit: 23.10 17:52:00,605|  C-In: 23.10 17:52:01,443|
+4-client@lab23: 372. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:0 ; HBQ eingang am: 23.10 17:52:00,229| DLQ Empfangszeit: 23.10 17:52:00,605|  C-In: 23.10 17:52:01,444|
+Fehlernachricht für Nachrichten von 414 bis 375 C-In: 23.10 17:52:01,449|
+lab29-1-<0.49.0>-T3: Msg #376, C-Out: 23.10 17:52:01,438| ; HBQ eingang am: 23.10 17:52:01,439| DLQ Empfangszeit: 23.10 17:52:01,440|  C-In: 23.10 17:52:01,449|
+lab29-2-<0.48.0>-T3: Msg #377, C-Out: 23.10 17:52:01,438| ; HBQ eingang am: 23.10 17:52:01,439| DLQ Empfangszeit: 23.10 17:52:01,440|  C-In: 23.10 17:52:01,450|
+lab29-3-<0.47.0>-T3: Msg #378, C-Out: 23.10 17:52:01,438| ; HBQ eingang am: 23.10 17:52:01,439| DLQ Empfangszeit: 23.10 17:52:01,440|  C-In: 23.10 17:52:01,450|
+lab29-7-<0.43.0>-T3: Msg #379, C-Out: 23.10 17:52:01,438| ; HBQ eingang am: 23.10 17:52:01,438| DLQ Empfangszeit: 23.10 17:52:01,440|  C-In: 23.10 17:52:01,451|
+lab29-10-<0.40.0>-T3: Msg #380, C-Out: 23.10 17:52:01,439| ; HBQ eingang am: 23.10 17:52:01,439| DLQ Empfangszeit: 23.10 17:52:01,440|  C-In: 23.10 17:52:01,451|
+lab29-5-<0.45.0>-T3: Msg #381, C-Out: 23.10 17:52:01,439| ; HBQ eingang am: 23.10 17:52:01,439| DLQ Empfangszeit: 23.10 17:52:01,440| ******* C-In: 23.10 17:52:01,452|
+lab29-6-<0.44.0>-T3: Msg #382, C-Out: 23.10 17:52:01,440| ; HBQ eingang am: 23.10 17:52:01,440| DLQ Empfangszeit: 23.10 17:52:01,440|  C-In: 23.10 17:52:01,452|
+lab29-8-<0.42.0>-T3: Msg #383, C-Out: 23.10 17:52:01,440| ; HBQ eingang am: 23.10 17:52:01,440| DLQ Empfangszeit: 23.10 17:52:01,441|  C-In: 23.10 17:52:01,453|
+ReceiveMsgs done
+lab29-5-<0.45.0>-T3: Msg #426, C-Out: 23.10 17:52:02,954| gesendet
+lab29-5-<0.45.0>-T3: Msg #436, C-Out: 23.10 17:52:04,455| gesendet
+lab29-5-<0.45.0>-T3: Msg #473, C-Out: 23.10 17:52:05,959| gesendet
+lab29-5-<0.45.0>-T3: Msg #544, C-Out: 23.10 17:52:07,461| gesendet
+lab29-5-<0.45.0>-T3: Msg #561, C-Out: 23.10 17:52:08,965| gesendet
+Neues Intervall: 2.25 Sekunden
+Msg #609 um 23.10 17:52:08,967| vergessen zu senden
+nok C-In: 23.10 17:52:08,967|
+Fehlernachricht für Nachrichten von 481 bis 528 C-In: 23.10 17:52:08,968|
+25-client@lab35 1-08 : 529te Nachricht. C Out: 23.10 17:52:05,662| ; HBQ eingang am: 23.10 17:52:05,664| DLQ Empfangszeit: 23.10 17:52:07,462|  C-In: 23.10 17:52:08,968|
+26-client@lab35 1-08 : 530te Nachricht. C Out: 23.10 17:52:05,662| ; HBQ eingang am: 23.10 17:52:05,664| DLQ Empfangszeit: 23.10 17:52:07,462|  C-In: 23.10 17:52:08,968|
+Fehlernachricht für Nachrichten von 531 bis 532 C-In: 23.10 17:52:08,969|
+27-client@lab35 1-08 : 533te Nachricht. C Out: 23.10 17:52:05,669| ; HBQ eingang am: 23.10 17:52:05,671| DLQ Empfangszeit: 23.10 17:52:07,463|  C-In: 23.10 17:52:08,970|
+Fehlernachricht für Nachrichten von 534 bis 534 C-In: 23.10 17:52:08,974|
+28-client@lab35 1-08 : 535te Nachricht. C Out: 23.10 17:52:05,674| ; HBQ eingang am: 23.10 17:52:05,676| DLQ Empfangszeit: 23.10 17:52:07,466|  C-In: 23.10 17:52:08,977|
+29-client@lab35 1-08 : 536te Nachricht. C Out: 23.10 17:52:05,674| ; HBQ eingang am: 23.10 17:52:05,676| DLQ Empfangszeit: 23.10 17:52:07,466|  C-In: 23.10 17:52:08,978|
+30-client@lab35 1-08 : 537te Nachricht. C Out: 23.10 17:52:05,674| ; HBQ eingang am: 23.10 17:52:05,676| DLQ Empfangszeit: 23.10 17:52:07,466|  C-In: 23.10 17:52:08,978|
+Fehlernachricht für Nachrichten von 538 bis 540 C-In: 23.10 17:52:08,979|
+lab29-2-<0.48.0>-T3: Msg #541, C-Out: 23.10 17:52:07,460| ; HBQ eingang am: 23.10 17:52:07,462| DLQ Empfangszeit: 23.10 17:52:07,468|  C-In: 23.10 17:52:08,979|
+lab29-7-<0.43.0>-T3: Msg #542, C-Out: 23.10 17:52:07,460| ; HBQ eingang am: 23.10 17:52:07,460| DLQ Empfangszeit: 23.10 17:52:07,468|  C-In: 23.10 17:52:08,980|
+lab29-10-<0.40.0>-T3: Msg #543, C-Out: 23.10 17:52:07,461| ; HBQ eingang am: 23.10 17:52:07,462| DLQ Empfangszeit: 23.10 17:52:07,468|  C-In: 23.10 17:52:08,980|
+lab29-5-<0.45.0>-T3: Msg #544, C-Out: 23.10 17:52:07,461| ; HBQ eingang am: 23.10 17:52:07,462| DLQ Empfangszeit: 23.10 17:52:07,468| ******* C-In: 23.10 17:52:08,980|
+lab29-3-<0.47.0>-T3: Msg #545, C-Out: 23.10 17:52:07,466| ; HBQ eingang am: 23.10 17:52:07,466| DLQ Empfangszeit: 23.10 17:52:07,469|  C-In: 23.10 17:52:08,981|
+lab29-1-<0.49.0>-T3: Msg #546, C-Out: 23.10 17:52:07,466| ; HBQ eingang am: 23.10 17:52:07,466| DLQ Empfangszeit: 23.10 17:52:07,469|  C-In: 23.10 17:52:08,981|
+lab29-8-<0.42.0>-T3: Msg #547, C-Out: 23.10 17:52:07,468| ; HBQ eingang am: 23.10 17:52:07,468| DLQ Empfangszeit: 23.10 17:52:07,469|  C-In: 23.10 17:52:08,982|
+lab29-6-<0.44.0>-T3: Msg #548, C-Out: 23.10 17:52:07,473| ; HBQ eingang am: 23.10 17:52:07,473| DLQ Empfangszeit: 23.10 17:52:07,473|  C-In: 23.10 17:52:08,982|
+Fehlernachricht für Nachrichten von 602 bis 558 C-In: 23.10 17:52:08,983|
+lab29-7-<0.43.0>-T3: Msg #559, C-Out: 23.10 17:52:08,962| ; HBQ eingang am: 23.10 17:52:08,962| DLQ Empfangszeit: 23.10 17:52:08,969|  C-In: 23.10 17:52:08,983|
+lab29-2-<0.48.0>-T3: Msg #560, C-Out: 23.10 17:52:08,965| ; HBQ eingang am: 23.10 17:52:08,967| DLQ Empfangszeit: 23.10 17:52:08,969|  C-In: 23.10 17:52:08,984|
+lab29-5-<0.45.0>-T3: Msg #561, C-Out: 23.10 17:52:08,965| ; HBQ eingang am: 23.10 17:52:08,967| DLQ Empfangszeit: 23.10 17:52:08,969| ******* C-In: 23.10 17:52:08,984|
+lab29-10-<0.40.0>-T3: Msg #562, C-Out: 23.10 17:52:08,965| ; HBQ eingang am: 23.10 17:52:08,965| DLQ Empfangszeit: 23.10 17:52:08,969|  C-In: 23.10 17:52:08,985|
+lab29-1-<0.49.0>-T3: Msg #563, C-Out: 23.10 17:52:08,969| ; HBQ eingang am: 23.10 17:52:08,969| DLQ Empfangszeit: 23.10 17:52:08,969|  C-In: 23.10 17:52:08,985|
+lab29-3-<0.47.0>-T3: Msg #564, C-Out: 23.10 17:52:08,969| ; HBQ eingang am: 23.10 17:52:08,969| DLQ Empfangszeit: 23.10 17:52:08,969|  C-In: 23.10 17:52:08,986|
+lab29-8-<0.42.0>-T3: Msg #565, C-Out: 23.10 17:52:08,970| ; HBQ eingang am: 23.10 17:52:08,974| DLQ Empfangszeit: 23.10 17:52:08,974|  C-In: 23.10 17:52:08,986|
+lab29-6-<0.44.0>-T3: Msg #566, C-Out: 23.10 17:52:08,974| ; HBQ eingang am: 23.10 17:52:08,974| DLQ Empfangszeit: 23.10 17:52:08,974|  C-In: 23.10 17:52:08,986|
+ReceiveMsgs done
+lab29-5-<0.45.0>-T3: Msg #616, C-Out: 23.10 17:52:11,238| gesendet
+lab29-5-<0.45.0>-T3: Msg #651, C-Out: 23.10 17:52:13,489| gesendet
+lab29-5-<0.45.0>-T3: Msg #717, C-Out: 23.10 17:52:15,740| gesendet
+lab29-5-<0.45.0>-T3: Msg #740, C-Out: 23.10 17:52:17,991| gesendet
+lab29-5-<0.45.0>-T3: Msg #783, C-Out: 23.10 17:52:20,242| gesendet
+Neues Intervall: 3.375 Sekunden
+Msg #840 um 23.10 17:52:20,244| vergessen zu senden
+nok C-In: 23.10 17:52:20,244|
+nok C-In: 23.10 17:52:20,245|
+Fehlernachricht für Nachrichten von 776 bis 736 C-In: 23.10 17:52:20,246|
+lab29-7-<0.43.0>-T3: Msg #737, C-Out: 23.10 17:52:17,990| ; HBQ eingang am: 23.10 17:52:17,990| DLQ Empfangszeit: 23.10 17:52:17,992|  C-In: 23.10 17:52:20,247|
+lab29-2-<0.48.0>-T3: Msg #738, C-Out: 23.10 17:52:17,991| ; HBQ eingang am: 23.10 17:52:17,991| DLQ Empfangszeit: 23.10 17:52:17,992|  C-In: 23.10 17:52:20,248|
+lab29-10-<0.40.0>-T3: Msg #739, C-Out: 23.10 17:52:17,991| ; HBQ eingang am: 23.10 17:52:17,991| DLQ Empfangszeit: 23.10 17:52:17,992|  C-In: 23.10 17:52:20,248|
+lab29-5-<0.45.0>-T3: Msg #740, C-Out: 23.10 17:52:17,991| ; HBQ eingang am: 23.10 17:52:17,991| DLQ Empfangszeit: 23.10 17:52:17,992| ******* C-In: 23.10 17:52:20,249|
+lab29-1-<0.49.0>-T3: Msg #741, C-Out: 23.10 17:52:17,992| ; HBQ eingang am: 23.10 17:52:17,992| DLQ Empfangszeit: 23.10 17:52:17,992|  C-In: 23.10 17:52:20,250|
+lab29-3-<0.47.0>-T3: Msg #742, C-Out: 23.10 17:52:17,992| ; HBQ eingang am: 23.10 17:52:17,992| DLQ Empfangszeit: 23.10 17:52:17,993|  C-In: 23.10 17:52:20,251|
+lab29-6-<0.44.0>-T3: Msg #743, C-Out: 23.10 17:52:17,995| ; HBQ eingang am: 23.10 17:52:17,995| DLQ Empfangszeit: 23.10 17:52:17,995|  C-In: 23.10 17:52:20,251|
+lab29-8-<0.42.0>-T3: Msg #744, C-Out: 23.10 17:52:17,995| ; HBQ eingang am: 23.10 17:52:17,995| DLQ Empfangszeit: 23.10 17:52:17,995|  C-In: 23.10 17:52:20,252|
+Fehlernachricht für Nachrichten von 782 bis 751 C-In: 23.10 17:52:20,252|
+client3@lab21-C-: <0.50.0> 752te_Nachricht. C Out: 23.10 17:52:15,910| (752); ; HBQ eingang am: 23.10 17:52:18,911| DLQ Empfangszeit: 23.10 17:52:18,911|  C-In: 23.10 17:52:20,253|
+client2@lab21-C-: <0.51.0> 753te_Nachricht. C Out: 23.10 17:52:15,910| (753); ; HBQ eingang am: 23.10 17:52:18,911| DLQ Empfangszeit: 23.10 17:52:18,911|  C-In: 23.10 17:52:20,254|
+client4@lab21-C-: <0.49.0> 754te_Nachricht. C Out: 23.10 17:52:15,913| (754); ; HBQ eingang am: 23.10 17:52:18,916| DLQ Empfangszeit: 23.10 17:52:18,916|  C-In: 23.10 17:52:20,255|
+client5@lab21-C-: <0.41.0> 755te_Nachricht. C Out: 23.10 17:52:15,913| (755); ; HBQ eingang am: 23.10 17:52:18,916| DLQ Empfangszeit: 23.10 17:52:18,917|  C-In: 23.10 17:52:20,255|
+client1@lab21-C-: <0.52.0> 756te_Nachricht. C Out: 23.10 17:52:15,913| (756); ; HBQ eingang am: 23.10 17:52:18,917| DLQ Empfangszeit: 23.10 17:52:18,917|  C-In: 23.10 17:52:20,256|
+Fehlernachricht für Nachrichten von 813 bis 781 C-In: 23.10 17:52:20,257|
+Fehlernachricht für Nachrichten von 784 bis 782 C-In: 23.10 17:52:20,257|
+lab29-5-<0.45.0>-T3: Msg #783, C-Out: 23.10 17:52:20,242| ; HBQ eingang am: 23.10 17:52:20,243| DLQ Empfangszeit: 23.10 17:52:20,244| ******* C-In: 23.10 17:52:20,260|
+lab29-10-<0.40.0>-T3: Msg #784, C-Out: 23.10 17:52:20,242| ; HBQ eingang am: 23.10 17:52:20,243| DLQ Empfangszeit: 23.10 17:52:20,244|  C-In: 23.10 17:52:20,260|
+lab29-2-<0.48.0>-T3: Msg #785, C-Out: 23.10 17:52:20,242| ; HBQ eingang am: 23.10 17:52:20,243| DLQ Empfangszeit: 23.10 17:52:20,244|  C-In: 23.10 17:52:20,261|
+lab29-3-<0.47.0>-T3: Msg #786, C-Out: 23.10 17:52:20,243| ; HBQ eingang am: 23.10 17:52:20,244| DLQ Empfangszeit: 23.10 17:52:20,244|  C-In: 23.10 17:52:20,262|
+lab29-1-<0.49.0>-T3: Msg #787, C-Out: 23.10 17:52:20,244| ; HBQ eingang am: 23.10 17:52:20,244| DLQ Empfangszeit: 23.10 17:52:20,244|  C-In: 23.10 17:52:20,262|
+lab29-8-<0.42.0>-T3: Msg #788, C-Out: 23.10 17:52:20,246| ; HBQ eingang am: 23.10 17:52:20,246| DLQ Empfangszeit: 23.10 17:52:20,247|  C-In: 23.10 17:52:20,263|
+lab29-6-<0.44.0>-T3: Msg #789, C-Out: 23.10 17:52:20,246| ; HBQ eingang am: 23.10 17:52:20,246| DLQ Empfangszeit: 23.10 17:52:20,247|  C-In: 23.10 17:52:20,263|
+ReceiveMsgs done
+lab29-5-<0.45.0>-T3: Msg #848, C-Out: 23.10 17:52:23,640| gesendet
+lab29-5-<0.45.0>-T3: Msg #928, C-Out: 23.10 17:52:27,016| gesendet
+lab29-5-<0.45.0>-T3: Msg #997, C-Out: 23.10 17:52:30,393| gesendet
+lab29-5-<0.45.0>-T3: Msg #1083, C-Out: 23.10 17:52:33,770| gesendet
+lab29-5-<0.45.0>-T3: Msg #1119, C-Out: 23.10 17:52:37,151| gesendet
+Neues Intervall: 1.6875 Sekunden
+Msg #1169 um 23.10 17:52:37,152| vergessen zu senden
+nok C-In: 23.10 17:52:37,153|
+nok C-In: 23.10 17:52:37,154|
+Fehlernachricht für Nachrichten von 936 bis 992 C-In: 23.10 17:52:37,155|
+client1@lab21-C-: <0.52.0> 993te_Nachricht. C Out: 23.10 17:52:26,942| (993); ; HBQ eingang am: 23.10 17:52:28,942| DLQ Empfangszeit: 23.10 17:52:29,508|  C-In: 23.10 17:52:37,156|
+client4@lab21-C-: <0.49.0> 994te_Nachricht. C Out: 23.10 17:52:26,942| (994); ; HBQ eingang am: 23.10 17:52:28,943| DLQ Empfangszeit: 23.10 17:52:29,508|  C-In: 23.10 17:52:37,157|
+Fehlernachricht für Nachrichten von 1004 bis 995 C-In: 23.10 17:52:37,157|
+lab29-10-<0.40.0>-T3: Msg #996, C-Out: 23.10 17:52:30,394| ; HBQ eingang am: 23.10 17:52:30,394| DLQ Empfangszeit: 23.10 17:52:30,530|  C-In: 23.10 17:52:37,158|
+Fehlernachricht für Nachrichten von 1058 bis 1056 C-In: 23.10 17:52:37,160|
+1-client@lab23: 1057. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:30 ; HBQ eingang am: 23.10 17:52:30,531| DLQ Empfangszeit: 23.10 17:52:30,532|  C-In: 23.10 17:52:37,160|
+5-client@lab23: 1058. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:30 ; HBQ eingang am: 23.10 17:52:30,530| DLQ Empfangszeit: 23.10 17:52:30,532|  C-In: 23.10 17:52:37,161|
+Fehlernachricht für Nachrichten von 1061 bis 1059 C-In: 23.10 17:52:37,162|
+3-client@lab23: 1060. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:30 ; HBQ eingang am: 23.10 17:52:30,539| DLQ Empfangszeit: 23.10 17:52:30,992|  C-In: 23.10 17:52:37,162|
+4-client@lab23: 1061. Nachricht--Gruppe:1-Team:5-Sendezeit:17:52:30 ; HBQ eingang am: 23.10 17:52:30,539| DLQ Empfangszeit: 23.10 17:52:30,992|  C-In: 23.10 17:52:37,163|
+Fehlernachricht für Nachrichten von 1082 bis 1066 C-In: 23.10 17:52:37,163|
+client2@lab21-C-: <0.51.0> 1067te_Nachricht. C Out: 23.10 17:52:28,990| (1067); ; HBQ eingang am: 23.10 17:52:31,991| DLQ Empfangszeit: 23.10 17:52:31,994|  C-In: 23.10 17:52:37,164|
+client1@lab21-C-: <0.52.0> 1068te_Nachricht. C Out: 23.10 17:52:28,990| (1068); ; HBQ eingang am: 23.10 17:52:31,994| DLQ Empfangszeit: 23.10 17:52:31,994|  C-In: 23.10 17:52:37,165|
+Fehlernachricht für Nachrichten von 1109 bis 1081 C-In: 23.10 17:52:37,165|
+Fehlernachricht für Nachrichten von 1087 bis 1082 C-In: 23.10 17:52:37,167|
+lab29-5-<0.45.0>-T3: Msg #1083, C-Out: 23.10 17:52:33,770| ; HBQ eingang am: 23.10 17:52:33,774| DLQ Empfangszeit: 23.10 17:52:33,774| ******* C-In: 23.10 17:52:37,167|
+Fehlernachricht für Nachrichten von 1086 bis 1084 C-In: 23.10 17:52:37,168|
+lab29-8-<0.42.0>-T3: Msg #1085, C-Out: 23.10 17:52:33,770| ; HBQ eingang am: 23.10 17:52:33,774| DLQ Empfangszeit: 23.10 17:52:34,268|  C-In: 23.10 17:52:37,168|
+lab29-1-<0.49.0>-T3: Msg #1086, C-Out: 23.10 17:52:33,770| ; HBQ eingang am: 23.10 17:52:33,774| DLQ Empfangszeit: 23.10 17:52:34,268|  C-In: 23.10 17:52:37,169|
+lab29-6-<0.44.0>-T3: Msg #1087, C-Out: 23.10 17:52:33,770| ; HBQ eingang am: 23.10 17:52:33,771| DLQ Empfangszeit: 23.10 17:52:34,268|  C-In: 23.10 17:52:37,170|
+Fehlernachricht für Nachrichten von 1088 bis 1108 C-In: 23.10 17:52:37,170|
+1-client@lab35 1-08 : 1109te Nachricht. C Out: 23.10 17:52:33,230| ; HBQ eingang am: 23.10 17:52:33,233| DLQ Empfangszeit: 23.10 17:52:34,268|  C-In: 23.10 17:52:37,171|
+7-client@lab35 1-08 : 1110te Nachricht. C Out: 23.10 17:52:33,240| ; HBQ eingang am: 23.10 17:52:33,244| DLQ Empfangszeit: 23.10 17:52:34,268|  C-In: 23.10 17:52:37,172|
+5-client@lab35 1-08 : 1111te Nachricht. C Out: 23.10 17:52:33,244| ; HBQ eingang am: 23.10 17:52:33,247| DLQ Empfangszeit: 23.10 17:52:34,268|  C-In: 23.10 17:52:37,173|
+12-client@lab35 1-08 : 1112te Nachricht. C Out: 23.10 17:52:33,259| ; HBQ eingang am: 23.10 17:52:33,262| DLQ Empfangszeit: 23.10 17:52:34,268|  C-In: 23.10 17:52:37,173|
+16-client@lab35 1-08 : 1113te Nachricht. C Out: 23.10 17:52:33,268| ; HBQ eingang am: 23.10 17:52:33,271| DLQ Empfangszeit: 23.10 17:52:34,268|  C-In: 23.10 17:52:37,174|
+Fehlernachricht für Nachrichten von 1153 bis 1114 C-In: 23.10 17:52:37,175|
+lab29-2-<0.48.0>-T3: Msg #1115, C-Out: 23.10 17:52:37,147| ; HBQ eingang am: 23.10 17:52:37,148| DLQ Empfangszeit: 23.10 17:52:37,148|  C-In: 23.10 17:52:37,175|
+lab29-10-<0.40.0>-T3: Msg #1116, C-Out: 23.10 17:52:37,148| ; HBQ eingang am: 23.10 17:52:37,148| DLQ Empfangszeit: 23.10 17:52:37,148|  C-In: 23.10 17:52:37,176|
+Fehlernachricht für Nachrichten von 1120 bis 1117 C-In: 23.10 17:52:37,176|
+lab29-6-<0.44.0>-T3: Msg #1118, C-Out: 23.10 17:52:37,151| ; HBQ eingang am: 23.10 17:52:37,151| DLQ Empfangszeit: 23.10 17:52:37,152|  C-In: 23.10 17:52:37,177|
+lab29-5-<0.45.0>-T3: Msg #1119, C-Out: 23.10 17:52:37,151| ; HBQ eingang am: 23.10 17:52:37,152| DLQ Empfangszeit: 23.10 17:52:37,152| ******* C-In: 23.10 17:52:37,179|
+lab29-3-<0.47.0>-T3: Msg #1120, C-Out: 23.10 17:52:37,151| ; HBQ eingang am: 23.10 17:52:37,151| DLQ Empfangszeit: 23.10 17:52:37,152|  C-In: 23.10 17:52:37,179|
+lab29-1-<0.49.0>-T3: Msg #1121, C-Out: 23.10 17:52:37,151| ; HBQ eingang am: 23.10 17:52:37,152| DLQ Empfangszeit: 23.10 17:52:37,152|  C-In: 23.10 17:52:37,180|
+lab29-8-<0.42.0>-T3: Msg #1122, C-Out: 23.10 17:52:37,151| ; HBQ eingang am: 23.10 17:52:37,152| DLQ Empfangszeit: 23.10 17:52:37,152|  C-In: 23.10 17:52:37,180|
+ReceiveMsgs done
+lab29-5-<0.45.0>-T3: Msg #1176, C-Out: 23.10 17:52:38,870| gesendet

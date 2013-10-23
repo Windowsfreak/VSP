@@ -4,4 +4,3 @@ deps
 *.beam
 *.plt
 *.*~
-*.log
