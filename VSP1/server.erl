@@ -2,7 +2,10 @@
 -compile([export_all]).
 
 
-start() -> spawn(server, loop, []).
+start() ->
+	Pid = spawn(server, loop, []),
+	register(server, Pid),
+	Pid.
 
 loop() ->
 	{ok, ServerCfg} = file:consult("server.cfg"),
