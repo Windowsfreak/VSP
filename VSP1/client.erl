@@ -68,7 +68,7 @@ requestNnr(ServerPID, NnrList) ->
 requestNnr(ServerPID) ->
 	ServerPID ! {getmsgid, self()},
 	receive
-		{nnr, Number} -> Number
+		{nid, Number} -> Number
 	end.
 
 isKnown(_Nnr, []) -> false;

@@ -18,7 +18,7 @@ loop(HBQ, DLQ, ClientList, NextNnr, Timer, ServerCfg) ->
 		stop ->
 			io:fwrite("Programm wurde beendet.~n");
 		{getmsgid, ClientPID} ->
-			ClientPID ! {nnr, NextNnr},
+			ClientPID ! {nid, NextNnr},
 			log("server.log", "getMsgId by ~p - ~p~n", [ClientPID, NextNnr]),
 			loop(HBQ, DLQ, ClientList, NextNnr + 1, Timer, ServerCfg);
 		{dropmessage, {Message, Number}} ->
