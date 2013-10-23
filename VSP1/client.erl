@@ -79,6 +79,6 @@ pcName() ->
 	{ok, Name} = inet:gethostname(),
 	Name.
 	
-format(Text, Params) -> erlang:iolist_to_binary(io_lib:format(Text, Params)).
+format(Text, Params) -> lists:flatten(io_lib:format(Text, Params)).
 log(File, Text, Params) -> werkzeug:logging(File, format(Text, Params)).
 getFileName(Number) -> lists:flatten(["client", integer_to_list(Number), ".log"]).
