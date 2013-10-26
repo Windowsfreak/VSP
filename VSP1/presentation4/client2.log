@@ -1,0 +1,122 @@
+lab29-2-<0.5741.0>-T3 C-Start: 23.10 18:11:27,369|
+lab29-2-<0.5741.0>-T3: Msg #1896, C-Out: 23.10 18:11:28,370| gesendet
+lab29-2-<0.5741.0>-T3: Msg #1993, C-Out: 23.10 18:11:29,371| gesendet
+lab29-2-<0.5741.0>-T3: Msg #2087, C-Out: 23.10 18:11:30,376| gesendet
+lab29-2-<0.5741.0>-T3: Msg #2176, C-Out: 23.10 18:11:31,377| gesendet
+lab29-2-<0.5741.0>-T3: Msg #2290, C-Out: 23.10 18:11:32,380| gesendet
+Neues Intervall: 1 Sekunden
+Msg #2371 um 23.10 18:11:32,380| vergessen zu senden
+lab29-33-<0.3306.0>-T3: Msg #2162, C-Out: 23.10 18:11:31,192| HBQ-In: 23.10 18:11:31,192| DQ-In: 23.10 18:11:31,253| C-In: 23.10 18:11:32,381|
+lab29-23-<0.4130.0>-T3: Msg #2163, C-Out: 23.10 18:11:31,192| HBQ-In: 23.10 18:11:31,192| DQ-In: 23.10 18:11:31,253| C-In: 23.10 18:11:32,381|
+Fehlernachricht fuer Luecke von 2164 bis 2164 C-In: 23.10 18:11:32,382|
+lab29-28-<0.3729.0>-T3: Msg #2165, C-Out: 23.10 18:11:31,203| HBQ-In: 23.10 18:11:31,203| DQ-In: 23.10 18:11:31,382| C-In: 23.10 18:11:32,384|
+lab29-18-<0.4519.0>-T3: Msg #2166, C-Out: 23.10 18:11:31,212| HBQ-In: 23.10 18:11:31,212| DQ-In: 23.10 18:11:31,382| C-In: 23.10 18:11:32,384|
+Fehlernachricht fuer Luecke von 2167 bis 2169 C-In: 23.10 18:11:32,385|
+lab29-13-<0.4921.0>-T3: Msg #2170, C-Out: 23.10 18:11:31,253| HBQ-In: 23.10 18:11:31,253| DQ-In: 23.10 18:11:31,411| C-In: 23.10 18:11:32,385|
+Fehlernachricht fuer Luecke von 2171 bis 2174 C-In: 23.10 18:11:32,387|
+lab29-7-<0.5358.0>-T3: Msg #2175, C-Out: 23.10 18:11:31,368| HBQ-In: 23.10 18:11:31,368| DQ-In: 23.10 18:11:31,432| C-In: 23.10 18:11:32,387|
+lab29-2-<0.5741.0>-T3: Msg #2176, C-Out: 23.10 18:11:31,377| HBQ-In: 23.10 18:11:31,378| DQ-In: 23.10 18:11:31,432|******* C-In: 23.10 18:11:32,388|
+Fehlernachricht fuer Luecke von 2177 bis 2177 C-In: 23.10 18:11:32,388|
+lab29-32-<0.3394.0>-T3: Msg #2178, C-Out: 23.10 18:11:31,382| HBQ-In: 23.10 18:11:31,382| DQ-In: 23.10 18:11:31,572| C-In: 23.10 18:11:32,388|
+Fehlernachricht fuer Luecke von 2179 bis 2180 C-In: 23.10 18:11:32,389|
+lab29-27-<0.3815.0>-T3: Msg #2181, C-Out: 23.10 18:11:31,404| HBQ-In: 23.10 18:11:31,404| DQ-In: 23.10 18:11:31,582| C-In: 23.10 18:11:32,389|
+Fehlernachricht fuer Luecke von 2182 bis 2182 C-In: 23.10 18:11:32,389|
+lab29-22-<0.4210.0>-T3: Msg #2183, C-Out: 23.10 18:11:31,410| HBQ-In: 23.10 18:11:31,411| DQ-In: 23.10 18:11:31,587| C-In: 23.10 18:11:32,390|
+lab29-17-<0.4601.0>-T3: Msg #2184, C-Out: 23.10 18:11:31,432| HBQ-In: 23.10 18:11:31,432| DQ-In: 23.10 18:11:31,587| C-In: 23.10 18:11:32,393|
+lab29-12-<0.4991.0>-T3: Msg #2185, C-Out: 23.10 18:11:31,432| HBQ-In: 23.10 18:11:31,432| DQ-In: 23.10 18:11:31,587| C-In: 23.10 18:11:32,393|
+Fehlernachricht fuer Luecke von 2186 bis 2195 C-In: 23.10 18:11:32,395|
+lab29-6-<0.5440.0>-T3: Msg #2196, C-Out: 23.10 18:11:31,572| HBQ-In: 23.10 18:11:31,572| DQ-In: 23.10 18:11:31,619| C-In: 23.10 18:11:32,396|
+lab29-1-<0.5818.0>-T3: Msg #2197, C-Out: 23.10 18:11:31,582| HBQ-In: 23.10 18:11:31,582| DQ-In: 23.10 18:11:31,619| C-In: 23.10 18:11:32,396|
+lab29-31-<0.3480.0>-T3: Msg #2198, C-Out: 23.10 18:11:31,587| HBQ-In: 23.10 18:11:31,587| DQ-In: 23.10 18:11:31,619| C-In: 23.10 18:11:32,402|
+Fehlernachricht fuer Luecke von 2199 bis 2199 C-In: 23.10 18:11:32,402|
+lab29-26-<0.3898.0>-T3: Msg #2200, C-Out: 23.10 18:11:31,598| HBQ-In: 23.10 18:11:31,598| DQ-In: 23.10 18:11:31,805| C-In: 23.10 18:11:32,403|
+Fehlernachricht fuer Luecke von 2201 bis 2201 C-In: 23.10 18:11:32,403|
+lab29-11-<0.5067.0>-T3: Msg #2202, C-Out: 23.10 18:11:31,618| HBQ-In: 23.10 18:11:31,619| DQ-In: 23.10 18:11:31,806| C-In: 23.10 18:11:32,403|
+lab29-21-<0.4291.0>-T3: Msg #2203, C-Out: 23.10 18:11:31,618| HBQ-In: 23.10 18:11:31,618| DQ-In: 23.10 18:11:31,806| C-In: 23.10 18:11:32,403|
+Fehlernachricht fuer Luecke von 2204 bis 2204 C-In: 23.10 18:11:32,404|
+lab29-16-<0.4681.0>-T3: Msg #2205, C-Out: 23.10 18:11:31,628| HBQ-In: 23.10 18:11:31,628| DQ-In: 23.10 18:11:31,812| C-In: 23.10 18:11:32,404|
+Fehlernachricht fuer Luecke von 2206 bis 2208 C-In: 23.10 18:11:32,404|
+5-client@lab23: 2209. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,696| DQ-In: 23.10 18:11:31,829| C-In: 23.10 18:11:32,405|
+2-client@lab23: 2210. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,696| DQ-In: 23.10 18:11:31,829| C-In: 23.10 18:11:32,405|
+4-client@lab23: 2211. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,696| DQ-In: 23.10 18:11:31,830| C-In: 23.10 18:11:32,405|
+1-client@lab23: 2212. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,696| DQ-In: 23.10 18:11:31,830| C-In: 23.10 18:11:32,405|
+4-client@lab23: 2213. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,702| DQ-In: 23.10 18:11:31,830| C-In: 23.10 18:11:32,406|
+5-client@lab23: 2214. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,702| DQ-In: 23.10 18:11:31,830| C-In: 23.10 18:11:32,406|
+2-client@lab23: 2215. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,702| DQ-In: 23.10 18:11:31,830| C-In: 23.10 18:11:32,407|
+3-client@lab23: 2216. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,702| DQ-In: 23.10 18:11:31,830| C-In: 23.10 18:11:32,409|
+1-client@lab23: 2217. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,702| DQ-In: 23.10 18:11:31,830| C-In: 23.10 18:11:32,412|
+lab29-58-<0.1296.0>-T3: Msg #2218, C-Out: 23.10 18:11:32,200| HBQ-In: 23.10 18:11:32,201| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,412|
+2-client@lab23: 2219. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,704| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,412|
+3-client@lab23: 2220. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,706| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,415|
+1-client@lab23: 2221. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,707| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,417|
+5-client@lab23: 2222. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,706| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,418|
+4-client@lab23: 2223. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,706| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,418|
+2-client@lab23: 2224. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,710| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,420|
+3-client@lab23: 2225. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,712| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,421|
+4-client@lab23: 2226. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,711| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,423|
+5-client@lab23: 2227. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,710| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,423|
+1-client@lab23: 2228. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,711| DQ-In: 23.10 18:11:32,201| C-In: 23.10 18:11:32,424|
+Fehlernachricht fuer Luecke von 2229 bis 2232 C-In: 23.10 18:11:32,424|
+3-client@lab23: 2233. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:30 HBQ-In: 23.10 18:11:30,713| DQ-In: 23.10 18:11:32,412| C-In: 23.10 18:11:32,426|
+Fehlernachricht fuer Luecke von 2234 bis 2234 C-In: 23.10 18:11:32,426|
+lab29-43-<0.2458.0>-T3: Msg #2235, C-Out: 23.10 18:11:32,232| HBQ-In: 23.10 18:11:32,233| DQ-In: 23.10 18:11:32,418| C-In: 23.10 18:11:32,429|
+ReceiveMsgs done
+lab29-2-<0.5741.0>-T3: Msg #2378, C-Out: 23.10 18:11:33,433| gesendet
+lab29-2-<0.5741.0>-T3: Msg #2459, C-Out: 23.10 18:11:34,435| gesendet
+lab29-2-<0.5741.0>-T3: Msg #2532, C-Out: 23.10 18:11:35,436| gesendet
+lab29-2-<0.5741.0>-T3: Msg #2628, C-Out: 23.10 18:11:36,437| gesendet
+lab29-2-<0.5741.0>-T3: Msg #2695, C-Out: 23.10 18:11:37,438| gesendet
+Neues Intervall: 1.5 Sekunden
+Msg #2769 um 23.10 18:11:37,439| vergessen zu senden
+1-client@lab23: 2559. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,758| DQ-In: 23.10 18:11:36,230| C-In: 23.10 18:11:37,441|
+5-client@lab23: 2560. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,758| DQ-In: 23.10 18:11:36,230| C-In: 23.10 18:11:37,441|
+lab29-23-<0.4130.0>-T3: Msg #2561, C-Out: 23.10 18:11:36,270| HBQ-In: 23.10 18:11:36,277| DQ-In: 23.10 18:11:36,277| C-In: 23.10 18:11:37,442|
+Fehlernachricht fuer Luecke von 2562 bis 2562 C-In: 23.10 18:11:37,442|
+2-client@lab23: 2563. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,764| DQ-In: 23.10 18:11:36,437| C-In: 23.10 18:11:37,443|
+5-client@lab23: 2564. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,764| DQ-In: 23.10 18:11:36,437| C-In: 23.10 18:11:37,444|
+1-client@lab23: 2565. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,764| DQ-In: 23.10 18:11:36,437| C-In: 23.10 18:11:37,444|
+2-client@lab23: 2566. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,767| DQ-In: 23.10 18:11:36,437| C-In: 23.10 18:11:37,446|
+1-client@lab23: 2567. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,767| DQ-In: 23.10 18:11:36,437| C-In: 23.10 18:11:37,447|
+5-client@lab23: 2568. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,768| DQ-In: 23.10 18:11:36,437| C-In: 23.10 18:11:37,449|
+lab29-38-<0.2880.0>-T3: Msg #2569, C-Out: 23.10 18:11:36,270| HBQ-In: 23.10 18:11:36,277| DQ-In: 23.10 18:11:36,437| C-In: 23.10 18:11:37,450|
+Fehlernachricht fuer Luecke von 2570 bis 2572 C-In: 23.10 18:11:37,452|
+4-client@lab23: 2573. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,778| DQ-In: 23.10 18:11:36,639| C-In: 23.10 18:11:37,452|
+3-client@lab23: 2574. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,778| DQ-In: 23.10 18:11:36,639| C-In: 23.10 18:11:37,454|
+Fehlernachricht fuer Luecke von 2575 bis 2575 C-In: 23.10 18:11:37,455|
+4-client@lab23: 2576. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,780| DQ-In: 23.10 18:11:36,676| C-In: 23.10 18:11:37,455|
+3-client@lab23: 2577. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,780| DQ-In: 23.10 18:11:36,676| C-In: 23.10 18:11:37,457|
+4-client@lab23: 2578. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,782| DQ-In: 23.10 18:11:36,676| C-In: 23.10 18:11:37,459|
+3-client@lab23: 2579. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,782| DQ-In: 23.10 18:11:36,676| C-In: 23.10 18:11:37,459|
+4-client@lab23: 2580. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,786| DQ-In: 23.10 18:11:36,676| C-In: 23.10 18:11:37,459|
+3-client@lab23: 2581. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:34 HBQ-In: 23.10 18:11:34,786| DQ-In: 23.10 18:11:36,676| C-In: 23.10 18:11:37,463|
+4-client@lab23: 2582. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:36 HBQ-In: 23.10 18:11:36,791| DQ-In: 23.10 18:11:36,791| C-In: 23.10 18:11:37,463|
+3-client@lab23: 2583. Nachricht--Gruppe:1-Team:5-Sendezeit:18:11:36 HBQ-In: 23.10 18:11:36,791| DQ-In: 23.10 18:11:36,791| C-In: 23.10 18:11:37,465|
+Fehlernachricht fuer Luecke von 2584 bis 2585 C-In: 23.10 18:11:37,465|
+lab29-5-<0.5513.0>-T3: Msg #2586, C-Out: 23.10 18:11:35,829| HBQ-In: 23.10 18:11:35,829| DQ-In: 23.10 18:11:36,900| C-In: 23.10 18:11:37,466|
+lab29-45-<0.2293.0>-T3: Msg #2587, C-Out: 23.10 18:11:36,333| HBQ-In: 23.10 18:11:36,333| DQ-In: 23.10 18:11:36,900| C-In: 23.10 18:11:37,466|
+lab29-10-<0.5112.0>-T3: Msg #2588, C-Out: 23.10 18:11:35,840| HBQ-In: 23.10 18:11:35,844| DQ-In: 23.10 18:11:36,900| C-In: 23.10 18:11:37,467|
+lab29-30-<0.3559.0>-T3: Msg #2589, C-Out: 23.10 18:11:36,385| HBQ-In: 23.10 18:11:36,387| DQ-In: 23.10 18:11:36,900| C-In: 23.10 18:11:37,470|
+lab29-15-<0.4762.0>-T3: Msg #2590, C-Out: 23.10 18:11:36,396| HBQ-In: 23.10 18:11:36,397| DQ-In: 23.10 18:11:36,900| C-In: 23.10 18:11:37,473|
+Fehlernachricht fuer Luecke von 2591 bis 2592 C-In: 23.10 18:11:37,473|
+lab29-37-<0.2967.0>-T3: Msg #2593, C-Out: 23.10 18:11:36,456| HBQ-In: 23.10 18:11:36,458| DQ-In: 23.10 18:11:37,034| C-In: 23.10 18:11:37,474|
+Fehlernachricht fuer Luecke von 2594 bis 2594 C-In: 23.10 18:11:37,474|
+lab29-22-<0.4210.0>-T3: Msg #2595, C-Out: 23.10 18:11:36,471| HBQ-In: 23.10 18:11:36,473| DQ-In: 23.10 18:11:37,071| C-In: 23.10 18:11:37,474|
+Fehlernachricht fuer Luecke von 2596 bis 2597 C-In: 23.10 18:11:37,475|
+lab29-4-<0.5587.0>-T3: Msg #2598, C-Out: 23.10 18:11:36,013| HBQ-In: 23.10 18:11:36,015| DQ-In: 23.10 18:11:37,158| C-In: 23.10 18:11:37,475|
+lab29-9-<0.5191.0>-T3: Msg #2599, C-Out: 23.10 18:11:36,027| HBQ-In: 23.10 18:11:36,028| DQ-In: 23.10 18:11:37,158| C-In: 23.10 18:11:37,475|
+Fehlernachricht fuer Luecke von 2600 bis 2601 C-In: 23.10 18:11:37,476|
+lab29-44-<0.2376.0>-T3: Msg #2602, C-Out: 23.10 18:11:36,532| HBQ-In: 23.10 18:11:36,532| DQ-In: 23.10 18:11:37,174| C-In: 23.10 18:11:37,478|
+lab29-14-<0.4846.0>-T3: Msg #2603, C-Out: 23.10 18:11:36,566| HBQ-In: 23.10 18:11:36,570| DQ-In: 23.10 18:11:37,174| C-In: 23.10 18:11:37,479|
+lab29-29-<0.3641.0>-T3: Msg #2604, C-Out: 23.10 18:11:36,568| HBQ-In: 23.10 18:11:36,571| DQ-In: 23.10 18:11:37,174| C-In: 23.10 18:11:37,479|
+Fehlernachricht fuer Luecke von 2605 bis 2607 C-In: 23.10 18:11:37,480|
+lab29-36-<0.3048.0>-T3: Msg #2608, C-Out: 23.10 18:11:36,638| HBQ-In: 23.10 18:11:36,638| DQ-In: 23.10 18:11:37,270| C-In: 23.10 18:11:37,480|
+lab29-21-<0.4291.0>-T3: Msg #2609, C-Out: 23.10 18:11:36,673| HBQ-In: 23.10 18:11:36,676| DQ-In: 23.10 18:11:37,270| C-In: 23.10 18:11:37,480|
+Fehlernachricht fuer Luecke von 2610 bis 2611 C-In: 23.10 18:11:37,481|
+lab29-8-<0.5273.0>-T3: Msg #2612, C-Out: 23.10 18:11:36,212| HBQ-In: 23.10 18:11:36,212| DQ-In: 23.10 18:11:37,380| C-In: 23.10 18:11:37,481|
+Fehlernachricht fuer Luecke von 2613 bis 2613 C-In: 23.10 18:11:37,481|
+lab29-3-<0.5663.0>-T3: Msg #2614, C-Out: 23.10 18:11:36,230| HBQ-In: 23.10 18:11:36,230| DQ-In: 23.10 18:11:37,395| C-In: 23.10 18:11:37,482|
+lab29-43-<0.2458.0>-T3: Msg #2615, C-Out: 23.10 18:11:36,736| HBQ-In: 23.10 18:11:36,736| DQ-In: 23.10 18:11:37,395| C-In: 23.10 18:11:37,482|
+Fehlernachricht fuer Luecke von 2616 bis 2616 C-In: 23.10 18:11:37,482|
+lab29-28-<0.3729.0>-T3: Msg #2617, C-Out: 23.10 18:11:36,753| HBQ-In: 23.10 18:11:36,753| DQ-In: 23.10 18:11:37,438| C-In: 23.10 18:11:37,483|
+ReceiveMsgs done
+lab29-2-<0.5741.0>-T3: Msg #2773, C-Out: 23.10 18:11:38,985| gesendet

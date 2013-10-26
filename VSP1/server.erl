@@ -2,7 +2,10 @@
 -compile([export_all]).
 
 
-start() -> spawn(server, loop, []).
+start() ->
+	Pid = spawn(server, loop, []),
+	register(server, Pid),
+	Pid.
 
 loop() ->
 	{ok, ServerCfg} = file:consult("server.cfg"),
@@ -13,9 +16,9 @@ loop() ->
 loop(HBQ, DLQ, ClientList, NextNnr, Timer, ServerCfg) ->
 	receive
 		stop ->
-			io:fwrite("Programm wurde beendet.~n");
+			log("server.log", "~s-~p-T3 S-Stop: ~s~n", [pcName(), self(), werkzeug:timeMilliSecond()]);
 		{getmsgid, ClientPID} ->
-			ClientPID ! {nnr, NextNnr},
+			ClientPID ! {nid, NextNnr},
 			log("server.log", "getMsgId by ~p - ~p~n", [ClientPID, NextNnr]),
 			loop(HBQ, DLQ, ClientList, NextNnr + 1, Timer, ServerCfg);
 		{dropmessage, {Message, Number}} ->
@@ -129,5 +132,5 @@ pcName() ->
 	{ok, Name} = inet:gethostname(),
 	Name.
 
-format(Text, Params) -> erlang:iolist_to_binary(io_lib:format(Text, Params)).
+format(Text, Params) -> lists:flatten(io_lib:format(Text, Params)).
 log(File, Text, Params) -> werkzeug:logging(File, format(Text, Params)).
