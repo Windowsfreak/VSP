@@ -27,6 +27,8 @@ test(ServerPID) ->
 		{params, Params} -> Params
 	end.
 	
+findWeight({Weight, _, _}) -> Weight.
+
 findRemoteNode({_, NodeName, Remote}, NodeName) -> Remote;
 findRemoteNode({_, Remote, NodeName}, NodeName) -> Remote.
 
@@ -36,27 +38,52 @@ updateEdgeList({Remote, _, Type}, [{Remote, Weight, _} | EdgeList]) ->
 updateEdgeList(Triple, [{Remote, Weight, Type} | EdgeList]) ->
 	[{Remote, Weight, Type}] ++ updateEdgeList(Triple, EdgeList).
 	
-sendInitiate(_NodeName, _Source, _Level, _FragmentID, _NodeState, []) -> false;
+sendInitiate(_NodeName, _Source, _Level, _FragmentID, _NodeState, []) ->
+	log("server.log", "Last edge processed, entering tail recursion...~n", []),
+	{-1, false, []};
 sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Source, Weight, Type} | EdgeList]) -> 
-	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList).
+	log("server.log", "skipping Source Edge: ~s~n", [Source]),
+	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList);
 sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Remote, Weight, rejected} | EdgeList]) -> 
-	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList).
+	log("server.log", "skipping Rejected Edge: ~s~n", [Remote]),
+	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList);
 sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Remote, Weight, branch} | EdgeList]) -> 
-%	if
-%		((Remote /= Source) and (Type == branch)) ->
-			log("server.log", "send initiate to ~s~n", [Remote]),
-%		true ->
-%			Test = "hallo"
-%	end,
-	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList).
+	log("server.log", "send initiate to ~s: ~p~n", [Remote, {initiate, Level, FragmentID, NodeState, {Weight, NodeName, Remote}}]),
+	ReturnedData = sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList),
+	log("server.log", "entering receiveReport for ~s or substitute, returned data: ~p~n", [Remote, ReturnedData]),
+	ReportedData = receiveReport(NodeName),
+	log("server.log", "leaving  receiveReport, received data: ~p~n", [ReceivedData]),
+	selectReturnValue(ReturnedData, ReportedData);
 sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Remote, Weight, basic} | EdgeList]) -> 
-%	if
-%		((Remote /= Source) and (Type == branch)) ->
-%			log("server.log", "send initiate to ~s~n", [Remote]);
-%		true ->
-			Test = "hallo",
-%	end,
-	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList).
-	
+	log("server.log", "send test to ~s: ~p~n", [Remote, {test, Level, FragmentID, {Weight, NodeName, Remote}}]),
+	ReturnedData = sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList),
+	log("server.log", "entering receiveReport for ~s or substitute, returned data: ~p~n", [Remote, ReturnedData]),
+	ReportedData = receiveReport(NodeName),
+	log("server.log", "leaving  receiveReport, received data: ~p~n", [ReceivedData]),
+	selectReturnValue(ReturnedData, ReportedData).
+
+receiveReport(NodeName) ->
+	receive
+		{accept, Edge} -> {findWeight(Edge), Edge};
+		{reject, Edge} -> {-1, Edge};
+		{report, Weight, Edge} -> {Weight, Edge};
+		{params, ClientPID} ->
+			ClientPID ! {params, [NodeName, 'Hey, I am in receiveReport and have no additional information available.']},
+			receiveReport(NodeName)
+	end.
+
+selectReturnValue(ReturnedData, ReportedData) ->
+	{ReturnedWeight, ReturnedEdge, RejectedEdges} = ReturnedData,
+	{ReportedWeight, ReportedEdge} = ReportedData,
+	if
+		(ReportedWeight = -1) ->
+			{ReturnedWeight, ReturnedEdge, RejectedEdges ++ [ReportedEdge]};
+		(ReportedWeight < ReturnedWeight) ->
+			{ReportedWeight, ReportedEdge, RejectedEdges};
+		true ->
+			{ReturnedWeight, ReturnedEdge, RejectedEdges}
+	end.
+
+
 format(Text, Params) -> lists:flatten(io_lib:format(Text, Params)).
 log(File, Text, Params) -> werkzeug:logging(File, format(Text, Params)).
