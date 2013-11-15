@@ -37,13 +37,25 @@ updateEdgeList(Triple, [{Remote, Weight, Type} | EdgeList]) ->
 	[{Remote, Weight, Type}] ++ updateEdgeList(Triple, EdgeList).
 	
 sendInitiate(_NodeName, _Source, _Level, _FragmentID, _NodeState, []) -> false;
-sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Remote, Weight, Type} | EdgeList]) -> 
-	if
-		((Remote /= Source) and (Type == branch)) ->
-			log("server.log", "send initiate to ~s~n", [Remote]);
-		true ->
-			Test = "hallo"
-	end,
+sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Source, Weight, Type} | EdgeList]) -> 
+	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList).
+sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Remote, Weight, rejected} | EdgeList]) -> 
+	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList).
+sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Remote, Weight, branch} | EdgeList]) -> 
+%	if
+%		((Remote /= Source) and (Type == branch)) ->
+			log("server.log", "send initiate to ~s~n", [Remote]),
+%		true ->
+%			Test = "hallo"
+%	end,
+	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList).
+sendInitiate(NodeName, Source, Level, FragmentID, NodeState, [{Remote, Weight, basic} | EdgeList]) -> 
+%	if
+%		((Remote /= Source) and (Type == branch)) ->
+%			log("server.log", "send initiate to ~s~n", [Remote]);
+%		true ->
+			Test = "hallo",
+%	end,
 	sendInitiate(NodeName, Source, Level, FragmentID, NodeState, EdgeList).
 	
 format(Text, Params) -> lists:flatten(io_lib:format(Text, Params)).
