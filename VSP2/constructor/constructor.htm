@@ -1,0 +1,279 @@
+<html>
+<head>
+<title>Constructor</title>
+<style type="text/css">
+/*html, body {
+width: 100%;
+height: 100%;
+margin: 0px;
+}*/
+body {
+background-color: #c0c0c0;
+}
+div {
+font-size: 10px;
+font-family: Arial;
+}
+.wrapper {
+background-color: white;
+position: relative;
+min-width: 300px;
+min-height: 300px;
+height: 100%;
+}
+.nodes, .paths, .log, .buttons, #canvas {
+position: absolute;
+}
+.log {
+background-color: gray;
+min-width: 100px;
+}
+#canvas {
+width: 100%;
+height: 100%;
+min-width: 300px;
+min-height: 300px;
+}
+.connect .nodes a {
+border-color: blue;
+background-color: #c0c0c0;
+}
+.nodes a, .paths a {
+position: absolute;
+display: block;
+width: 40px;
+height: 15px;
+text-align: center;
+background-color: white;
+}
+.nodes a {
+border: 1px solid black;
+cursor: move;
+}
+.paths a {
+border: 1px dashed black;
+cursor: text;
+}
+.nodes a:hover, .paths a:hover {
+border-color: red;
+}
+.log {
+display: none;
+}
+</style>
+<script src="jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="jcanvas.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="wrapper">
+<canvas id="canvas">
+</canvas>
+<div class="nodes">
+</div>
+<div class="paths">
+</div>
+<div class="buttons">
+<button id="export">Exportieren</button>
+<button id="help">Hilfe</button>
+</div>
+<div class="log">
+<a class="close">Schließen</a>
+<pre></pre>
+</div>
+</div>
+<script type="text/javascript">
+var nodes = Array(); // contains array(x, y, name, obj)
+var paths = Array(); // contains array(node, node, length, obj)
+var maxNode = 0;
+var isDrag = false;
+var isConnect = false;
+function paint() {
+	$("#canvas").draw({
+		fn: function(ctx) {
+			ctx.canvas.width  = $('#canvas').width();
+			ctx.canvas.height = $('#canvas').height();
+		}
+	});
+	$("#canvas").clearCanvas();
+	$.jCanvas({
+		strokeStyle: "#000",
+	});
+	for (var i = 0; i < paths.length; ++i) {
+		$("#canvas").drawLine({
+			x1: nodes[paths[i][0]][0] + 20, y1: nodes[paths[i][0]][1] + 7,
+			x2: nodes[paths[i][1]][0] + 20, y2: nodes[paths[i][1]][1] + 7
+		});
+		paths[i][3].css({top: (nodes[paths[i][0]][1] + nodes[paths[i][1]][1]) / 2,
+			left: (nodes[paths[i][0]][0] + nodes[paths[i][1]][0]) / 2});
+	}
+}
+function add(ev) {
+	maxNode++;
+	var node = $('<a>node' + maxNode + '</a>').css({top: ev.offsetY, left: ev.offsetX});
+	node.data('node', maxNode);
+	nodes[maxNode] = Array(ev.offsetX, ev.offsetY, 'node' + maxNode, node);
+	$('.nodes').append(node);
+}
+function drag(ev) {
+	ignore(ev);
+	if (ev.ctrlKey) {
+		var obj = $(ev.currentTarget);
+		isConnect = obj.data('node');
+		$('body').addClass('connect');
+	} else {
+		var obj = $(ev.currentTarget);
+		var pos = obj.position();
+		isDrag = Array(ev.offsetX - pos.left, ev.offsetY - pos.top, ev.currentTarget);
+	}
+}
+function move(ev) {
+	if (isDrag != false) {
+		var obj = $(isDrag[2]);
+		obj.css({top: ev.offsetY - isDrag[1], left: ev.offsetX - isDrag[0]});
+		var id = $(isDrag[2]).data('node');
+		nodes[id][0] = obj.position().left;
+		nodes[id][1] = obj.position().top;
+		paint();
+		ignore(ev);
+	}
+}
+function ignore(ev) {
+	ev.stopPropagation();
+	ev.preventDefault();
+}
+function drop(ev) {
+	if (isDrag != false) {
+		ignore(ev);
+		var obj = $(isDrag[2]);
+		var id = obj.data('node');
+		nodes[id][0] = obj.position().left;
+		nodes[id][1] = obj.position().top;
+		isDrag = false;
+		paint();
+	}
+}
+function connect(ev) {
+	if (isConnect != false) {
+		ignore(ev);
+		var id = $(ev.currentTarget).data('node');
+		if (id == isConnect) {
+			isConnect = false;
+			$('body').removeClass('connect');
+			return;	
+		}
+		var path = $('<a>0</a>').css({top: (nodes[isConnect][1] + nodes[id][1]) / 2,
+			left: (nodes[isConnect][0] + nodes[id][0]) / 2});
+		path.data('path', paths.length);
+		paths.push(Array(isConnect, id, 0, path));
+		$('.paths').append(path);
+		isConnect = false;
+		$('body').removeClass('connect');
+		paint();
+	}
+}
+function setNode(ev) {
+	ignore(ev);
+	var id = $(ev.currentTarget).data('node');
+	var text = prompt('Geben Sie einen Neuen Namen für ' + nodes[id][2] + ' ein:');
+	if (text == null) return;
+	nodes[id][2] = text;
+	$(nodes[id][3]).text(text);
+	paint();
+}
+function setPath(ev) {
+	ignore(ev);
+	var id = $(ev.currentTarget).data('path');
+	var text = prompt('Geben Sie eine Gewichtung für den Pfad zwischen ' + nodes[paths[id][0]][2] + ' und ' + nodes[paths[id][1]][2] + ' ein:');
+	if (text == null) return;
+	if (isNaN(text - 0)) return;
+	paths[id][2] = text;
+	$(paths[id][3]).text(text);
+	paint();
+}
+function delNode(ev) {
+	ignore(ev);
+	isPath = false;
+	isConnect = false;
+	$('body').removeClass('connect');
+	
+	var id = $(ev.currentTarget).data('node');
+	var del = Array();
+	for (var i = 0; i < paths.length; ++i) {
+		if (paths[i][0] == id || paths[i][1] == id)
+		{
+			del.push(i);
+			paths[i][3].remove();
+		}
+	}
+	var offset = 0;
+	for (var i = 0; i < del.length; ++i) {
+		paths.splice(i - offset, 1);
+		offset++;
+	}
+	for (var i = 0; i < paths.length; ++i) {
+		paths[i][3].data('path', i);
+	}
+	$(ev.currentTarget).remove();
+	paint();
+	nodes[id] = null;
+}
+function delPath(ev) {
+	ignore(ev);
+	isPath = false;
+	isConnect = false;
+	$('body').removeClass('connect');
+
+	var id = $(ev.currentTarget).data('path');
+	paths.splice(id, 1);
+	for (var i = 0; i < paths.length; ++i) {
+		paths[i][3].data('path', i);
+	}
+	paint();
+	$(ev.currentTarget).remove();
+}
+function print(ev) {
+	ignore(ev);
+	var str = "";
+	var str2 = "";
+	for (var i in nodes) {
+		if (nodes[i] == null) continue;
+		var nodecfg = nodes[i][2] + ".cfg";
+		str2 += "del " + nodecfg + "\n";
+		str += "[" + nodes[i][2] + "]\n";
+		for (var j in paths) {
+			var oth = null;
+			if (paths[j][0] == i) oth = paths[j][1];
+			if (paths[j][1] == i) oth = paths[j][0];
+			if (oth != null) {
+				str2 += "echo {" + paths[j][2] + "," + nodes[oth][2] + "}. >> " + nodecfg + "\n";
+				str += paths[j][2] + "," + nodes[oth][2] + "\n";
+			}
+		}
+	}
+	console.log(str);
+	$('.log').show();
+	$('.log pre').text(str2);
+}
+function help(ev) {
+	ignore(ev);
+	alert("Auf freier Fläche:\nLinksklick = neuer Knoten\nRechtsklick = Export\n\nAuf Knoten:\nLinksklick = verschieben\nRechtsklick = löschen\nDoppelklick = Namen ändern\nStrg+Linksklick = Verbinde mit anderem Knoten\n\nAuf Pfad:\nDoppelklick = Gewichtung ändern\nRechtsklick = Löschen");
+}
+$('.nodes').on('mousedown','a', drag);
+$('.nodes').on('mouseup', 'a', connect);
+$('.wrapper').on('mousemove', move);
+$('.wrapper').on('mouseup', drop);
+$('.nodes').on('dblclick','a', setNode);
+$('.nodes').on('click','a', ignore);
+$('.nodes').on('contextmenu','a', delNode);
+$('.paths').on('dblclick','a', setPath);
+$('.paths').on('click','a', ignore);
+$('.paths').on('contextmenu','a', delPath);
+$('.wrapper').click(add);
+$('.wrapper').contextmenu(print);
+$('.log a').click(function(ev) { $('.log').hide(); ignore(ev); });
+$('.log').click(function(ev) { ignore(ev); });
+$('#export').click(print);
+$('#help').click(help);
+</script>
+</body>
+</html>
