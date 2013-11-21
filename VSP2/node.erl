@@ -7,17 +7,12 @@
 
 %% infinite is an atom, atoms are always greater than numbers
 
-startAll() ->
-	{
-		start(node1),
-		start(node2),
-		start(node3),
-		start(node4),
-		start(node5),
-		start(node6),
-		start(node7)
-	}.
-
+startAll(0) -> [];
+startAll(Number) ->
+	startAll(Number - 1) ++ [start(list_to_atom(format("node~p", [Number])))].
+startFor(Number, Which) ->
+	lists:nth(Which, startAll(Number)).
+	
 start(NodeName) ->
 	{ok, NodeCfg} = file:consult(format("~s.cfg", [NodeName])),
 	EdgeList = prepareEdgeList(NodeCfg),
@@ -298,18 +293,6 @@ findType({_, _, Type}) -> Type.
 findRemote({Remote, _, _}) -> Remote.
 
 % uses {Weight, Node1, Node2}
-% findRemoteNode({_, Node1, Node2}) ->
-	% log("node.log", "comparing ~p to ~p and ~p~n", [self(), {Node1, node()}, {Node2, node()}]),
-	% if
-		% self() == {Node1, node()} ->
-			% Node1;
-		% self() == {Node2, node()} ->
-			% Node2;
-		% true ->
-			% false
-	% end.
-
-% uses {Weight, Node1, Node2}
 findRemoteNode({_, NodeName, Remote}, NodeName) -> Remote;
 findRemoteNode({_, Remote, NodeName}, NodeName) -> Remote.
 
@@ -337,15 +320,18 @@ compareNodes({Weight, Node1, Node2}, {Weight, Node1, Node2}) -> true;
 compareNodes({Weight, Node1, Node2}, {Weight, Node2, Node1}) -> true;
 compareNodes(_, _) -> false.
 
+% uses {Remote, Weight, Type}
 updateEdgeList(Edge, []) -> throw(format("edge ~p unknown", [Edge]));
 updateEdgeList({Remote, _Weight, Type}, [{Remote, Weight, _Type} | EdgeList]) ->
 	[{Remote, Weight, Type}] ++ EdgeList;
 updateEdgeList(Triple, [{Remote, Weight, Type} | EdgeList]) ->
 	[{Remote, Weight, Type}] ++ updateEdgeList(Triple, EdgeList).
 
+% uses {Remote, Weight, Type}
 updateEdgeList({Remote, _, _}, Type, EdgeList) ->
 	updateEdgeList({Remote, -1, Type}, EdgeList).
 
+% uses {Weight, Node1, Node2}
 updateEdgeList(NodeName, Edge, Type, EdgeList) ->
 	Remote = findRemoteNode(Edge, NodeName),
 	updateEdgeList({Remote, -1, Type}, EdgeList).
