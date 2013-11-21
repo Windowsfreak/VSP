@@ -7,6 +7,17 @@
 
 %% infinite is an atom, atoms are always greater than numbers
 
+startAll() ->
+	{
+		start(node1),
+		start(node2),
+		start(node3),
+		start(node4),
+		start(node5),
+		start(node6),
+		start(node7)
+	}.
+
 start(NodeName) ->
 	{ok, NodeCfg} = file:consult(format("~s.cfg", [NodeName])),
 	EdgeList = prepareEdgeList(NodeCfg),
@@ -22,7 +33,7 @@ test(ServerPID) ->
 
 loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch, TestEdge, BestEdge, BestWeight) ->
 	receive
-  
+
 		{connect, RemoteLevel, RemoteEdge} -> % 3
 			if
 				NodeState == sleeping ->
@@ -33,17 +44,21 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 			Tmp1 = findType(findRemoteEdgeList(RemoteEdge, NewEdgeList)),
 			if
 				RemoteLevel < NewNodeLevel ->
+					log("node.log", "# ~s <=> ~s~n", [NodeName, findRemoteNode(RemoteEdge, NodeName)]),
 					NewNewEdgeList = updateEdgeList(NodeName, RemoteEdge, branch, NewEdgeList),
 					sendInitiate(NodeName, RemoteEdge, NewNodeLevel, NodeFragment, NewNodeState),
 					if
 						NewNodeState == find ->
-							NewNewFindCount = NewFindCount + 1;
+							NewNewFindCount = NewFindCount + 1,
+							log("node.log", "note over ~s: FindCount = ~p~n", [NodeName, NewNewFindCount]);
 						true ->
 							NewNewFindCount = NewFindCount
 					end,
 					loop(NodeName, NewNewEdgeList, NewNodeLevel, NewNodeState, NodeFragment, NewNewFindCount, InBranch, TestEdge, BestEdge, BestWeight);
 				Tmp1 == basic ->
 					% sleep einbauen?
+					log("node.log", "~s->~s: ~p~n", [NodeName, NodeName, {connect, RemoteLevel, RemoteEdge}]),
+					timer:sleep(1000),
 					self() ! {connect, RemoteLevel, RemoteEdge},
 					loop(NodeName, NewEdgeList, NewNodeLevel, NewNodeState, NodeFragment, NewFindCount, InBranch, TestEdge, BestEdge, BestWeight);
 				true ->
@@ -59,7 +74,7 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 			NewBestEdge = false,
 			NewBestWeight = infinite,
 			
-			{NewFindCount} = sendAllInitiate(NodeName, RemoteEdge, EdgeList, FindCount, RemoteLevel, RemoteFragment, RemoteState),
+			NewFindCount = sendAllInitiate(NodeName, RemoteEdge, EdgeList, FindCount, RemoteLevel, RemoteFragment, RemoteState),
 			% BLÖDE BEKNACKTE FOR SCHLEIFE Send Initiate(Remote, Remote, Remote, Remote) on all branches, not source
 			% NewFindCount = ... return value,
 
@@ -81,6 +96,8 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 			if
 				RemoteLevel > NodeLevel ->
 					% sleep einbauen?
+					log("node.log", "~s->~s: ~p~n", [NodeName, NodeName, {test, RemoteLevel, RemoteFragment, RemoteEdge}]),
+					timer:sleep(1000),
 					self() ! {test, RemoteLevel, RemoteFragment, RemoteEdge},
 					loop(NodeName, NewEdgeList, NewNodeLevel, NewNodeState, NodeFragment, NewFindCount, InBranch, TestEdge, BestEdge, BestWeight);
 				true ->
@@ -126,18 +143,19 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 			Tmp6 = findType(findRemoteEdgeList(RemoteEdge, EdgeList)),
 			if
 				Tmp6 == basic ->
-					NewEdgeList = updateEdgeList(NodeName, RemoteEdge, rejected, EdgeList),
-					{NewNodeState, NewTestEdge} = test(NodeName, NewEdgeList, NodeState, NodeLevel, NodeFragment, FindCount, InBranch, BestWeight),
-					loop(NodeName, NewEdgeList, NodeLevel, NewNodeState, NodeFragment, FindCount, InBranch, NewTestEdge, BestEdge, BestWeight);
+					NewEdgeList = updateEdgeList(NodeName, RemoteEdge, rejected, EdgeList);
 				true ->
-					loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch, TestEdge, BestEdge, BestWeight)
-			end;
+					NewEdgeList = EdgeList
+			end,
+			{NewNodeState, NewTestEdge} = test(NodeName, NewEdgeList, NodeState, NodeLevel, NodeFragment, FindCount, InBranch, BestWeight),
+			loop(NodeName, NewEdgeList, NodeLevel, NewNodeState, NodeFragment, FindCount, InBranch, NewTestEdge, BestEdge, BestWeight);
 
 		{report, RemoteWeight, RemoteEdge} -> % 10
 			Tmp7 = compareNodes(RemoteEdge, InBranch),
 			if
 				Tmp7 == false ->
 					NewFindCount = FindCount - 1,
+					log("node.log", "note over ~s: FindCount = ~p~n", [NodeName, NewFindCount]),
 					if
 						RemoteWeight < BestWeight ->
 							NewBestWeight = RemoteWeight,
@@ -150,6 +168,8 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 					loop(NodeName, EdgeList, NodeLevel, NewNodeState, NodeFragment, NewFindCount, InBranch, TestEdge, NewBestEdge, NewBestWeight);
 				NodeState == find ->
 					% sleep einbauen?
+					log("node.log", "~s->~s: ~p~n", [NodeName, NodeName, {report, RemoteWeight, RemoteEdge}]),
+					timer:sleep(1000),
 					self() ! {report, RemoteWeight, RemoteEdge},
 					loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch, TestEdge, BestEdge, BestWeight);
 				RemoteWeight > BestWeight ->
@@ -157,7 +177,11 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 					loop(NodeName, NewEdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch, TestEdge, BestEdge, BestWeight);
 				(RemoteWeight == infinite) and (BestWeight == infinite) ->
 					% exit(),
-					{true} % equivalent to exit!
+					log("node.log", "note over ~s: terminate~n", [NodeName]),
+					loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch, TestEdge, BestEdge, BestWeight);
+					% {true}; % equivalent to exit!
+				true ->
+					loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch, TestEdge, BestEdge, BestWeight)
 			end;
 
 		{changeroot, _Edge} -> % 12
@@ -165,6 +189,7 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 			loop(NodeName, NewEdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch, TestEdge, BestEdge, BestWeight);
 
 		wakeup -> % 1
+			log("node.log", "note over ~s: wakeup~n", [NodeName]),
 			{NewEdgeList, NewNodeLevel, NewNodeState, NewFindCount} = wakeup(NodeName, EdgeList),
 			loop(NodeName, NewEdgeList, NewNodeLevel, NewNodeState, NodeFragment, NewFindCount, InBranch, TestEdge, BestEdge, BestWeight);
 
@@ -176,6 +201,7 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 
 wakeup(NodeName, EdgeList) -> % 2
 	MinEdge = findMinimumBasicEdge(EdgeList),
+	log("node.log", "# ~s <=> ~s~n", [NodeName, findRemote(MinEdge)]),
 	NewEdgeList = updateEdgeList(MinEdge, branch, EdgeList),
 	NodeLevel = 0,
 	NodeState = found,
@@ -212,12 +238,13 @@ changeRoot(NodeName, EdgeList, BestEdge, NodeLevel) -> % 11
 			{EdgeList};
 		true ->
 			sendConnect(NodeName, BestEdge, NodeLevel),
+			log("node.log", "# ~s <=> ~s~n", [NodeName, findRemoteNode(BestEdge, NodeName)]),
 			NewEdgeList = updateEdgeList(NodeName, BestEdge, branch, EdgeList),
 			{NewEdgeList}
 	end.
 
 sendAllInitiate(_NodeName, _RemoteEdge, [], FindCount, _RemoteLevel, _RemoteFragment, _RemoteState) ->
-	{FindCount};
+	FindCount;
 sendAllInitiate(NodeName, RemoteEdge, [Edge | EdgeList], FindCount, RemoteLevel, RemoteFragment, RemoteState) ->
 	Tmp9 = findType(Edge),
 	Tmp10 = compareNodes(RemoteEdge, exportEdge(NodeName, Edge)),
@@ -266,6 +293,9 @@ findWeight({Weight, _, _}) -> Weight.
 
 % uses {Remote, Weight, Type}
 findType({_, _, Type}) -> Type.
+
+% uses {Remote, Weight, Type}
+findRemote({Remote, _, _}) -> Remote.
 
 % uses {Weight, Node1, Node2}
 % findRemoteNode({_, Node1, Node2}) ->

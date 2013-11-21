@@ -1,57 +1,101 @@
-sending message {connect,0,{node2,2,basic}}
-sending message {connect,0,{2,node2,node1}}
-sending message {connect,0,{2,node2,node1}}
-sending message {initiate,1,2,find,{2,node2,node1}}
-sending message {initiate,1,2,find,{2,node2,node1}}
-sending message {test,1,2,{3,node3,node1}}
-sending message {test,1,2,{3,node3,node1}}
-sending message {connect,0,{2,node2,node1}}
-sending message {connect,0,{2,node2,node1}}
-sending message {connect,0,{2,node2,node1}} to false
-sending message {connect,0,{2,node2,node1}} to false
-comparing <0.51.0> to {node2,sergej@GANDALF} and {node1,sergej@GANDALF}
-comparing <0.51.0> to {node2,sergej@GANDALF} and {node1,sergej@GANDALF}
-sending message {connect,0,{2,node2,node1}} to false
-sending message {connect,0,{2,node2,node1}} to node2
-sending message {connect,0,{2,node1,node2}} to node1
-sending message {connect,0,{2,node2,node1}} to node2
-sending message {connect,0,{2,node1,node2}} to node1
-sending message {connect,0,{2,node2,node1}} to node2
-sending message {connect,0,{2,node1,node2}} to node1
-sending message {initiate,1,2,find,{2,node2,node1}} to node1
-sending message {initiate,1,2,find,{2,node1,node2}} to node2
-sending message {test,1,2,{3,node3,node1}} to node3
-sending message {test,1,2,{4,node3,node2}} to node3
-sending message {connect,0,{3,node1,node3}} to node1
-sending message {initiate,1,2,find,{3,node1,node3}} to node3
-sending message {test,1,2,{4,node2,node3}} to node2
-sending message {accept,{4,node3,node2}} to node2
-sending message {accept,{3,node3,node1}} to node1
-sending message {accept,{4,node2,node3}} to node3
-sending message {report,4,{2,node1,node2}} to node1
-sending message {report,4,{3,node1,node3}} to node1
-sending message {report,3,{2,node2,node1}} to node2
-sending message {changeroot,{3,node3,node1}} to node3
-sending message {connect,1,{4,node2,node3}} to node2
-node1->node2: {connect,0,{2,node2,node1}}
-node2->node1: {connect,0,{2,node1,node2}}
-node2->node1: {initiate,1,2,find,{2,node2,node1}}
-node1->node2: {initiate,1,2,find,{2,node1,node2}}
-node1->node3: {test,1,2,{3,node3,node1}}
-node2->node3: {test,1,2,{4,node3,node2}}
-node3->node1: {connect,0,{3,node1,node3}}
-node1->node3: {initiate,1,2,find,{3,node1,node3}}
-node3->node2: {test,1,2,{4,node2,node3}}
-node3->node1: {reject,{3,node3,node1}}
-node1->node2: {connect,0,{2,node2,node1}}
-node2->node1: {connect,0,{2,node1,node2}}
-node2->node1: {initiate,1,2,find,{2,node2,node1}}
-node1->node2: {initiate,1,2,find,{2,node1,node2}}
-node1->node3: {test,1,2,{3,node3,node1}}
-node2->node3: {test,1,2,{4,node3,node2}}
-node3->node1: {connect,0,{3,node1,node3}}
-node1->node3: {initiate,1,2,find,{3,node1,node3}}
-node3->node2: {test,1,2,{4,node2,node3}}
-node3->node1: {report,infinite,{3,node1,node3}}
-node3->node1: {reject,{3,node3,node1}}
-node2->node1: {report,infinite,{2,node1,node2}}
+note over node5: wakeup
+# node5 <=> node6
+node5->node6: {connect,0,{4,node6,node5}}
+# node6 <=> node7
+node6->node7: {connect,0,{3,node7,node6}}
+node6->node6: {connect,0,{4,node6,node5}}
+# node7 <=> node1
+node7->node1: {connect,0,{2,node1,node7}}
+node7->node7: {connect,0,{3,node7,node6}}
+# node1 <=> node7
+node1->node7: {connect,0,{2,node7,node1}}
+node1->node7: {initiate,1,2,find,{2,node1,node7}}
+node7->node1: {initiate,1,2,find,{2,node7,node1}}
+node7->node6: {test,1,2,{3,node6,node7}}
+# node7 <=> node6
+node7->node6: {initiate,1,2,find,{3,node7,node6}}
+note over node7: FindCount = 1
+node6->node6: {test,1,2,{3,node6,node7}}
+node1->node2: {test,1,2,{5,node2,node1}}
+# node2 <=> node1
+node2->node1: {connect,0,{5,node1,node2}}
+node2->node2: {test,1,2,{5,node2,node1}}
+# node1 <=> node2
+node1->node2: {initiate,1,2,find,{5,node1,node2}}
+note over node1: FindCount = 1
+node2->node3: {test,1,2,{7,node3,node2}}
+node2->node1: {reject,{5,node2,node1}}
+node6->node5: {test,1,2,{4,node5,node6}}
+# node6 <=> node5
+node6->node5: {initiate,1,2,find,{4,node6,node5}}
+note over node6: FindCount = 1
+node6->node7: {reject,{3,node6,node7}}
+# node3 <=> node4
+node3->node4: {connect,0,{1,node4,node3}}
+node3->node3: {test,1,2,{7,node3,node2}}
+node1->node5: {test,1,2,{8,node5,node1}}
+node5->node5: {test,1,2,{4,node5,node6}}
+# node4 <=> node3
+node4->node3: {connect,0,{1,node3,node4}}
+node4->node3: {initiate,1,1,find,{1,node4,node3}}
+node5->node4: {test,1,2,{6,node4,node5}}
+node5->node1: {reject,{8,node5,node1}}
+node5->node6: {reject,{4,node5,node6}}
+node3->node4: {initiate,1,1,find,{1,node3,node4}}
+node3->node2: {test,1,1,{7,node2,node3}}
+node3->node2: {accept,{7,node3,node2}}
+node4->node4: {test,1,2,{6,node4,node5}}
+node2->node3: {accept,{7,node2,node3}}
+node2->node1: {report,7,{5,node1,node2}}
+node3->node4: {report,7,{1,node4,node3}}
+note over node1: FindCount = 0
+node1->node7: {report,7,{2,node7,node1}}
+node7->node7: {report,7,{2,node7,node1}}
+node7->node7: {report,7,{2,node7,node1}}
+node4->node5: {test,1,1,{6,node5,node4}}
+node4->node4: {report,7,{1,node4,node3}}
+node5->node4: {accept,{6,node5,node4}}
+node4->node5: {accept,{6,node4,node5}}
+node4->node3: {report,6,{1,node3,node4}}
+node4->node5: {connect,1,{6,node5,node4}}
+# node4 <=> node5
+node7->node7: {report,7,{2,node7,node1}}
+node5->node6: {report,6,{4,node6,node5}}
+node5->node5: {connect,1,{6,node5,node4}}
+note over node6: FindCount = 0
+node6->node7: {report,6,{3,node7,node6}}
+node5->node5: {connect,1,{6,node5,node4}}
+note over node7: FindCount = 0
+node7->node1: {report,6,{2,node1,node7}}
+node7->node6: {changeroot,{3,node7,node6}}
+node6->node5: {changeroot,{4,node6,node5}}
+node5->node4: {connect,1,{6,node4,node5}}
+# node5 <=> node4
+node5->node4: {initiate,2,6,find,{6,node5,node4}}
+node4->node5: {initiate,2,6,find,{6,node4,node5}}
+node4->node3: {initiate,2,6,find,{1,node3,node4}}
+node4->node2: {test,2,6,{9,node2,node4}}
+node5->node6: {initiate,2,6,find,{4,node6,node5}}
+node3->node2: {test,2,6,{7,node2,node3}}
+node2->node2: {test,2,6,{9,node2,node4}}
+node6->node7: {initiate,2,6,find,{3,node7,node6}}
+node7->node1: {initiate,2,6,find,{2,node1,node7}}
+node1->node2: {initiate,2,6,find,{5,node2,node1}}
+node2->node2: {test,2,6,{7,node2,node3}}
+node2->node3: {test,2,6,{7,node3,node2}}
+node2->node4: {reject,{9,node2,node4}}
+node2->node1: {report,infinite,{5,node2,node1}}
+node3->node4: {report,infinite,{1,node3,node4}}
+note over node1: FindCount = 0
+node1->node7: {report,infinite,{2,node1,node7}}
+note over node4: FindCount = 0
+node4->node5: {report,infinite,{6,node5,node4}}
+node5->node5: {report,infinite,{6,node5,node4}}
+note over node7: FindCount = 0
+node7->node6: {report,infinite,{3,node7,node6}}
+note over node6: FindCount = 0
+node6->node5: {report,infinite,{4,node6,node5}}
+note over node5: FindCount = 0
+node5->node4: {report,infinite,{6,node4,node5}}
+note over node5: terminate
+note over node4: terminate
