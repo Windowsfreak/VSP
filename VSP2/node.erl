@@ -53,7 +53,7 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 				Tmp1 == basic ->
 					% sleep einbauen?
 					log("node.log", "~s->~s: ~p~n", [NodeName, NodeName, {connect, RemoteLevel, RemoteEdge}]),
-					timer:sleep(1000),
+					timer:sleep(100),
 					self() ! {connect, RemoteLevel, RemoteEdge},
 					loop(NodeName, NewEdgeList, NewNodeLevel, NewNodeState, NodeFragment, NewFindCount, InBranch, TestEdge, BestEdge, BestWeight);
 				true ->
@@ -70,7 +70,7 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 			NewBestWeight = infinite,
 			
 			NewFindCount = sendAllInitiate(NodeName, RemoteEdge, EdgeList, FindCount, RemoteLevel, RemoteFragment, RemoteState),
-			% BLÖDE BEKNACKTE FOR SCHLEIFE Send Initiate(Remote, Remote, Remote, Remote) on all branches, not source
+			% BLï¿½DE BEKNACKTE FOR SCHLEIFE Send Initiate(Remote, Remote, Remote, Remote) on all branches, not source
 			% NewFindCount = ... return value,
 
 			if
@@ -92,7 +92,7 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 				RemoteLevel > NodeLevel ->
 					% sleep einbauen?
 					log("node.log", "~s->~s: ~p~n", [NodeName, NodeName, {test, RemoteLevel, RemoteFragment, RemoteEdge}]),
-					timer:sleep(1000),
+					timer:sleep(100),
 					self() ! {test, RemoteLevel, RemoteFragment, RemoteEdge},
 					loop(NodeName, NewEdgeList, NewNodeLevel, NewNodeState, NodeFragment, NewFindCount, InBranch, TestEdge, BestEdge, BestWeight);
 				true ->
@@ -164,7 +164,7 @@ loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch
 				NodeState == find ->
 					% sleep einbauen?
 					log("node.log", "~s->~s: ~p~n", [NodeName, NodeName, {report, RemoteWeight, RemoteEdge}]),
-					timer:sleep(1000),
+					timer:sleep(100),
 					self() ! {report, RemoteWeight, RemoteEdge},
 					loop(NodeName, EdgeList, NodeLevel, NodeState, NodeFragment, FindCount, InBranch, TestEdge, BestEdge, BestWeight);
 				RemoteWeight > BestWeight ->
