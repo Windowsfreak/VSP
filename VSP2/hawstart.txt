@@ -1,4 +1,4 @@
 cd("/home/stud4/abd921/xp-pro.V2/Documents/VSP/VSP2").
 c(node).
 Nodes = node:startAll(17).
-lists:nth(5, Nodes) ! wakeup.
+lists:nth(3, Nodes) ! wakeup.
