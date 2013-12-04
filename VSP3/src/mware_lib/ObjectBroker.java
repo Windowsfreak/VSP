@@ -4,12 +4,20 @@ package mware_lib;
  * core of the middleware: Maintains a Reference to the NameService Singleton
  */
 public class ObjectBroker {
+	private final String serviceName;
+	private final int port;
+	private NameService ns;
+	
+	private ObjectBroker(String serviceName, int port) {
+		this.serviceName = serviceName;
+		this.port = port;
+	}
+
 	/**
 	 * @return an Implementation for a local NameService
 	 */
 	public NameService getNameService() {
-		//...
-		return null;
+		return (ns == null ? ns = new NameServiceStub(serviceName, port, null) : ns);
 	}
 
 	/**
@@ -27,7 +35,8 @@ public class ObjectBroker {
 	 * @return an ObjectBroker Interface to Nameservice
 	 */
 	public static ObjectBroker init(String serviceName, int port) {
-		//...
-		return null;
+		ObjectBroker ob = new ObjectBroker(serviceName, port);
+		// ...
+		return ob;
 	}
 }
