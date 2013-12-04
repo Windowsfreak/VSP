@@ -1,8 +1,9 @@
 package cash_access;
 
+import mware_lib.Skeleton;
 import communication.SerializationUtils;
 
-public class TransactionSkeleton {
+public class TransactionSkeleton implements Skeleton {
 	TransactionImplBase object;
 
 	public TransactionSkeleton(TransactionImplBase object) {

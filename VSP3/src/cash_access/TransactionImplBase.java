@@ -1,7 +1,9 @@
 package cash_access;
 
+import mware_lib.IImplBase;
 
-public abstract class TransactionImplBase {
+
+public abstract class TransactionImplBase implements IImplBase {
 	public abstract void deposit(String accountId, double amount)
 			throws InvalidParamException;
 

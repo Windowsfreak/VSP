@@ -1,8 +1,9 @@
 package bank_access;
 
+import mware_lib.Skeleton;
 import communication.SerializationUtils;
 
-public class ManagerSkeleton {
+public class ManagerSkeleton implements Skeleton {
 
 	ManagerImplBase object;
 

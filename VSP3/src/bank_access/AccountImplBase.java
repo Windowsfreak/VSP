@@ -1,6 +1,8 @@
 package bank_access;
 
-public abstract class AccountImplBase {
+import mware_lib.IImplBase;
+
+public abstract class AccountImplBase implements IImplBase {
 	public abstract void transfer(double amount) throws OverdraftException;
 
 	public abstract double getBalance();
