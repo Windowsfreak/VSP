@@ -1,8 +1,8 @@
-package nameservice;
+package name_service;
 
 import mware_lib.NameService;
 import mware_lib.Skeleton;
-import communication.SerializationUtils;
+import mware_lib.communication.SerializationUtils;
 
 public class NameServiceSkeleton implements Skeleton {
 	NameService object;

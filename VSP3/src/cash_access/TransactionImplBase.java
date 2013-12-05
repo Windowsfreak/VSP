@@ -15,7 +15,7 @@ public abstract class TransactionImplBase implements IImplBase {
 
 	public static TransactionImplBase narrowCast(Object o) {
 		Object[] objRef = (Object[]) o;
-		return new TransactionStub((String) objRef[0], (int) objRef[1], o);
+		return new TransactionStub((String) objRef[0], (int) objRef[1], objRef[2]);
 	}
 
 	public TransactionSkeleton getSkeleton() {

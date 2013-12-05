@@ -9,7 +9,7 @@ public abstract class AccountImplBase implements IImplBase {
 
 	public static AccountImplBase narrowCast(Object o) {
 		Object[] objRef = (Object[]) o;
-		return new AccountStub((String) objRef[0], (int) objRef[1], o);
+		return new AccountStub((String) objRef[0], (int) objRef[1], objRef[2]);
 	}
 
 	public AccountSkeleton getSkeleton() {

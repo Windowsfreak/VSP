@@ -7,7 +7,7 @@ public abstract class ManagerImplBase implements IImplBase {
 
 	public static ManagerImplBase narrowCast(Object o) {
 		Object[] objRef = (Object[]) o;
-		return new ManagerStub((String) objRef[0], (int) objRef[1], o);
+		return new ManagerStub((String) objRef[0], (int) objRef[1], objRef[2]);
 	}
 	
 	public ManagerSkeleton getSkeleton() {

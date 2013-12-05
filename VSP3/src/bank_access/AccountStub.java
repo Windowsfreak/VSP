@@ -1,7 +1,7 @@
 package bank_access;
 
-import communication.Client;
-import communication.SerializationUtils;
+import mware_lib.communication.Client;
+import mware_lib.communication.SerializationUtils;
 
 public class AccountStub extends AccountImplBase {
 	private final String host;
@@ -44,6 +44,14 @@ public class AccountStub extends AccountImplBase {
 						)
 					).receive()
 				);
+
+		if (SerializationUtils.isException(responseMsg)) {
+			Exception e = SerializationUtils.getException(responseMsg);
+			if (e instanceof RuntimeException)
+				throw (RuntimeException) e;
+			else
+				throw new RuntimeException("Unexpected Exception type", e);
+		}
 
 		return (double) SerializationUtils.getResult(responseMsg);
 	}

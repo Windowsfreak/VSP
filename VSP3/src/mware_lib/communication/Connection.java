@@ -1,4 +1,4 @@
-package communication;
+package mware_lib.communication;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

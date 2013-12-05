@@ -1,7 +1,7 @@
 package cash_access;
 
-import communication.Client;
-import communication.SerializationUtils;
+import mware_lib.communication.Client;
+import mware_lib.communication.SerializationUtils;
 
 public class TransactionStub extends TransactionImplBase {
 	private final String host;

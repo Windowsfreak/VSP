@@ -1,9 +1,11 @@
-package nameservice;
+package name_service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class NameService {
+import mware_lib.ObjectBroker;
+
+public class NameService extends mware_lib.NameService {
                 
         private Map<String, Object> references = new HashMap<String, Object>();
         
@@ -13,6 +15,10 @@ public class NameService {
         
         public Object resolve(String name) {
                 return this.references.get(name);
+        }
+        
+        public void submit(ObjectBroker ob) {
+        	ob.getSkeletonStore().rebind(new NameServiceSkeleton(this), "NameService");
         }
 
 }
