@@ -1,0 +1,34 @@
+Account resolved.
+depo...
+--bal 52245.0
+--bal 52245.0
+--bal 52245.0
+--bal 52245.0
+--bal 52245.0
+--bal 52245.0
+--bal 52245.0
+--bal 52245.0
+--bal 52245.0
+--bal 52245.0
+...depo
+bal:52245.0
+check dep-np-1 ok
+check dep-np-2 ok 'Invalid account null'
+check dep-np-3 ok
+check dep-val-1 ok
+check dep-val-2 ok 'branch-invpar1_2'
+check wit-np-1 ok
+check wit-np-2 ok 'Invalid account null'
+check wit-np-3 ok
+check wit-val-1 ok
+check wit-val-2 ok 'branch-invpar1_2'
+'bank-ovdE-52413' class cash_access.OverdraftException
+'branch-ovdE_347' class cash_access.OverdraftException
+
+Calling shutDown()...Done.
+Thread Reference Handler running=true class:java.lang.ref.Reference$ReferenceHandler
+Thread Signal Dispatcher running=true class:java.lang.Thread
+Thread Finalizer running=true class:java.lang.ref.Finalizer$FinalizerThread
+Thread main running=true class:java.lang.Thread
+Wait for termination...
+...FINISHED!

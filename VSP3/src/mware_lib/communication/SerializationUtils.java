@@ -5,8 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import cash_access.OverdraftException;
-
 public abstract class SerializationUtils {
 /*	{
 		// constructing a message
@@ -22,6 +20,7 @@ public abstract class SerializationUtils {
 		return new Object[] {objRef, methodName, params};
 	}
 	public static Object[] generateResponse(String returnType, Object value) {
+		// if (returnType.equals("exception")) ((Exception)value).printStackTrace();
 		return new Object[] {returnType, value};
 	}
 	public static Object getObjRef(Object requestMsg) {

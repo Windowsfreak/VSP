@@ -50,6 +50,10 @@ public class ObjectBroker {
 		}
 	}
 	
+	public void shutDown() {
+		shutdown();
+	}
+	
 	/**
 	 * shuts down the process, the OjectBroker is running in terminates process
 	 */

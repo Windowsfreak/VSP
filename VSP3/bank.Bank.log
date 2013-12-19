@@ -1,0 +1,10 @@
+Rebind NDEA...Done.
+-> Press ENTER to exit application...
+
+Calling shutDown()...Done.
+Thread main running=true class:java.lang.Thread
+Thread Signal Dispatcher running=true class:java.lang.Thread
+Thread Finalizer running=true class:java.lang.ref.Finalizer$FinalizerThread
+Thread Reference Handler running=true class:java.lang.ref.Reference$ReferenceHandler
+Wait for termination...
+...FINISHED!
